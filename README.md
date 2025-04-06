@@ -73,8 +73,8 @@ npm run dev
 ## 🧠 Author
 
 Vitali Pazdniakou
-🔗 GitHub Profile
+🔗 [GitHub Profile](https://github.com/vitalipazdniakou)
 
-“Silence is a word, too.”
+> “Silence is a word, too.”
 
 📎 Polish version available soon
