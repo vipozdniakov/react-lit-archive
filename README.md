@@ -48,7 +48,8 @@ VITE_FIREBASE_APP_ID=...
 npm run dev
 ```
 
-✨ Features
+## ✨ Features
+
 Add and display literature entries (prose or poetry)
 
 Text formatting preserved (e.g., line breaks in poetry)
@@ -61,13 +62,16 @@ Tag-based filtering with tag cloud
 
 Minimalist magazine-style layout
 
-📸 Screenshots
+## 📸 Screenshots
+
 (You can add preview images here, e.g. /public/preview.png)
 
-🌐 Live Demo
+## 🌐 Live Demo
+
 🔗 View on Vercel
 
-🧠 Author
+## 🧠 Author
+
 Vitali Pazdniakou
 🔗 GitHub Profile
 
