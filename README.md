@@ -50,17 +50,17 @@ npm run dev
 
 ## ✨ Features
 
-Add and display literature entries (prose or poetry)
+- Add and display literature entries (prose or poetry)
 
-Text formatting preserved (e.g., line breaks in poetry)
+- Text formatting preserved (e.g., line breaks in poetry)
 
-Full-text search across content and titles
+- Full-text search across content and titles
 
-Language filter: Russian, Belarusian, Polish
+- Language filter: Russian, Belarusian, Polish
 
-Tag-based filtering with tag cloud
+- Tag-based filtering with tag cloud
 
-Minimalist magazine-style layout
+- Minimalist magazine-style layout
 
 ## 📸 Screenshots
 
