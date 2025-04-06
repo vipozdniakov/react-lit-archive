@@ -1,8 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase-config";
 
-import { PostList } from "./components/PostList";
+import LoginButton from "./components/LoginButton";
+import UserPanel from "./components/UserPanel";
+
 import { NewPostForm } from "./components/NewPostForm";
+import { PostList } from "./components/PostList";
 import { SearchBar } from "./components/SearchBar";
 import "./index.css";
 
@@ -11,9 +16,11 @@ import { db } from "./firebase-config";
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
   const [query, setQuery] = useState("");
   const [languageFilter, setLanguageFilter] = useState("ALL");
   const [tagFilter, setTagFilter] = useState("");
+  const myUid = import.meta.env.VITE_MY_GOOGLE_UID;
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -27,6 +34,13 @@ function App() {
     };
 
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
   }, []);
 
   const handleAddPost = (newPost) => {
@@ -64,7 +78,7 @@ function App() {
         <h1 className="text-3xl font-bold text-center mb-6">
           📚 Архив прозы и поэзии
         </h1>
-        <NewPostForm onAddPost={handleAddPost} />
+
         <SearchBar query={query} onChange={setQuery} />
 
         <div className="mb-4">
@@ -104,6 +118,11 @@ function App() {
             </button>
           )}
         </div>
+        {!user && <LoginButton />}
+
+        {user?.uid === myUid && <UserPanel user={user} />}
+
+        {user?.uid === myUid && <NewPostForm onAddPost={handleAddPost} />}
 
         <PostList posts={filteredPosts} />
       </div>
