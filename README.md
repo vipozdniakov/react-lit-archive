@@ -20,32 +20,26 @@ The design follows a modern online magazine layout, with support for multiple la
 
 1. Clone the repository:
 
-```bash
 git clone https://github.com/vitalipazdniakou/react-lit-archive.git
 cd react-lit-archive
-Install dependencies:
 
-bash
-Kopiuj
-Edytuj
+2. Install dependencies:
+
 npm install
-Create a .env file and add your Firebase config:
 
-env
-Kopiuj
-Edytuj
+3. Create a .env file and add your Firebase config:
+
 VITE_FIREBASE_API_KEY=...
 VITE_FIREBASE_AUTH_DOMAIN=...
 VITE_FIREBASE_PROJECT_ID=...
 VITE_FIREBASE_STORAGE_BUCKET=...
 VITE_FIREBASE_MESSAGING_SENDER_ID=...
 VITE_FIREBASE_APP_ID=...
-Start the development server:
 
-bash
-Kopiuj
-Edytuj
+4. Start the development server:
+
 npm run dev
+
 ✨ Features
 Add and display literature entries (prose or poetry)
 
@@ -72,4 +66,3 @@ GitHub
 “Silence is a word, too.”
 
 📎 Polish version available soon
-```
