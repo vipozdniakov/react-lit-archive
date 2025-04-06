@@ -68,7 +68,7 @@ npm run dev
 
 ## 🌐 Live Demo
 
-🔗 View on Vercel
+🔗 [View on Vercel](https://react-lit-archive.vercel.app/)
 
 ## 🧠 Author
 
