@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 
-import LoginButton from "./components/LoginButton";
 import UserPanel from "./components/UserPanel";
-
 import { NewPostForm } from "./components/NewPostForm";
 import { PostList } from "./components/PostList";
 import { SearchBar } from "./components/SearchBar";
@@ -47,16 +45,13 @@ function App() {
     setPosts([newPost, ...posts]);
   };
 
-  // Получение уникальных тегов из всех постов
   const allTags = [...new Set(posts.flatMap((post) => post.tags))];
 
-  // Сортировка постов по дате создания (от новых к старым)
   const sortedPosts = [...posts].sort((a, b) => {
     return b.createdAt?.seconds - a.createdAt?.seconds;
   });
 
-  // Фильтрация постов по запросу, языку и тегу
-  const filteredPosts = posts.filter((post) => {
+  const filteredPosts = sortedPosts.filter((post) => {
     const matchesQuery =
       post.title.toLowerCase().includes(query.toLowerCase()) ||
       post.content.toLowerCase().includes(query.toLowerCase());
@@ -70,14 +65,18 @@ function App() {
   });
 
   return (
-    // Используем шрифт Lora для текста
-
-    // Используем Tailwind CSS для стилей
     <div className="font-lora bg-gray-50 min-h-screen py-8 px-4">
-      <div className="max-w-2xl mx-auto p-4 ">
+      <div className="max-w-2xl mx-auto p-4">
         <h1 className="text-3xl font-bold text-center mb-6">
           📚 Архив прозы и поэзии
         </h1>
+
+        {user?.uid === myUid && (
+          <p className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded mb-4 text-right">
+            🔒 Admin mode: {user.displayName}
+          </p>
+        )}
+        {/* {user?.uid === myUid && <UserPanel user={user} />} */}
 
         <SearchBar query={query} onChange={setQuery} />
 
@@ -118,9 +117,6 @@ function App() {
             </button>
           )}
         </div>
-        {!user && <LoginButton />}
-
-        {user?.uid === myUid && <UserPanel user={user} />}
 
         {user?.uid === myUid && <NewPostForm onAddPost={handleAddPost} />}
 
