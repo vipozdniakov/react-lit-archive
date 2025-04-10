@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 
-import UserPanel from "./components/UserPanel";
+// import UserPanel from "./components/UserPanel";
 import { NewPostForm } from "./components/NewPostForm";
 import { PostList } from "./components/PostList";
 import { SearchBar } from "./components/SearchBar";
