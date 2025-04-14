@@ -1,8 +1,10 @@
+// src/components/LoginButton.jsx
 import React, { useState, useEffect } from "react";
 import {
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { auth, provider } from "../firebase-config";
 
@@ -28,6 +30,7 @@ function LoginButton({ onLogin }) {
   };
 
   useEffect(() => {
+    // 1. Сначала пытаемся получить результат редиректа
     getRedirectResult(auth)
       .then((result) => {
         if (result?.user) {
@@ -38,8 +41,22 @@ function LoginButton({ onLogin }) {
       })
       .catch((error) => {
         console.error("Redirect login error:", error);
-        setMessage("Ошибка входа через редирект: " + error.message);
+        // Можно не показывать сообщение, если просто не было результата
+        if (error.message !== "Firebase: Error (auth/no-auth-event).") {
+          setMessage("Ошибка входа через редирект: " + error.message);
+        }
       });
+
+    // 2. Подстраховываемся — слушаем auth-сессию
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Auth state detected:", user);
+        onLogin(user);
+        setMessage(`Добро пожаловать, ${user.displayName}!`);
+      }
+    });
+
+    return () => unsubscribe();
   }, [onLogin]);
 
   return (
