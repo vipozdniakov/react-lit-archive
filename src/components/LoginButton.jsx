@@ -4,7 +4,6 @@ import {
   signInWithPopup,
   signInWithRedirect,
   getRedirectResult,
-  onAuthStateChanged,
 } from "firebase/auth";
 import { auth, provider } from "../firebase-config";
 
@@ -15,48 +14,38 @@ function LoginButton({ onLogin }) {
     try {
       setMessage("Вход...");
       if (window.innerWidth < 768) {
-        await signInWithRedirect(auth, provider);
+        await signInWithRedirect(auth, provider); // Мобильные
       } else {
-        const result = await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, provider); // Десктоп
         if (result?.user) {
+          console.log("✅ Popup login successful:", result.user);
           onLogin(result.user);
           setMessage(`Добро пожаловать, ${result.user.displayName}!`);
         }
       }
     } catch (error) {
-      console.error("Login failed", error);
+      console.error("❌ Login failed", error);
       setMessage("Ошибка входа: " + error.message);
     }
   };
 
+  // Обработка редиректа при загрузке страницы (после входа на мобиле)
   useEffect(() => {
-    // 1. Сначала пытаемся получить результат редиректа
+    console.log("🔄 Checking getRedirectResult");
     getRedirectResult(auth)
       .then((result) => {
         if (result?.user) {
-          console.log("Redirect login successful:", result.user);
+          console.log("✅ Redirect login successful:", result.user);
           onLogin(result.user);
           setMessage(`Добро пожаловать, ${result.user.displayName}!`);
+        } else {
+          console.log("ℹ️ No redirect result.");
         }
       })
       .catch((error) => {
-        console.error("Redirect login error:", error);
-        // Можно не показывать сообщение, если просто не было результата
-        if (error.message !== "Firebase: Error (auth/no-auth-event).") {
-          setMessage("Ошибка входа через редирект: " + error.message);
-        }
+        console.error("❌ Redirect login error:", error);
+        setMessage("Ошибка входа через редирект: " + error.message);
       });
-
-    // 2. Подстраховываемся — слушаем auth-сессию
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("Auth state detected:", user);
-        onLogin(user);
-        setMessage(`Добро пожаловать, ${user.displayName}!`);
-      }
-    });
-
-    return () => unsubscribe();
   }, [onLogin]);
 
   return (
