@@ -96,22 +96,29 @@ function App() {
         </div>
 
         <div className="mb-6">
-          <strong>Теги:</strong>{" "}
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setTagFilter(tagFilter === tag ? "" : tag)}
-              className={`mr-2 mb-2 px-2 py-1 border rounded ${
-                tagFilter === tag ? "bg-gray-300" : "bg-white"
-              }`}
-            >
-              #{tag}
-            </button>
-          ))}
+          <strong className="block mb-2">Теги:</strong>
+          <div className="flex flex-wrap gap-2 max-w-full">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setTagFilter(tagFilter === tag ? "" : tag)}
+                className={`px-2 py-1 border rounded text-sm shrink-0 ${
+                  tagFilter === tag ? "bg-gray-300" : "bg-white"
+                }`}
+                style={{
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                #{tag}
+              </button>
+            ))}
+          </div>
           {tagFilter && (
             <button
               onClick={() => setTagFilter("")}
-              className="text-red-600 ml-4"
+              className="text-red-600 mt-2 inline-block text-sm"
             >
               ✕ Сбросить тег
             </button>
