@@ -1,7 +1,7 @@
 // src/components/PostList.jsx
 import React from "react";
 
-export function PostList({ posts }) {
+export function PostList({ posts, user, myUid, onEdit }) {
   return (
     <div className="grid gap-6">
       {posts.map((post) => (
@@ -26,6 +26,15 @@ export function PostList({ posts }) {
               </span>
             ))}
           </div>
+
+          {user?.uid === myUid && (
+            <button
+              onClick={() => onEdit(post)}
+              className="mt-4 text-sm text-blue-600 hover:underline"
+            >
+              ✏️ Редактировать
+            </button>
+          )}
         </div>
       ))}
     </div>

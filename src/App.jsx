@@ -19,6 +19,7 @@ function App() {
   const [languageFilter, setLanguageFilter] = useState("ALL");
   const [tagFilter, setTagFilter] = useState("");
   const myUid = import.meta.env.VITE_MY_GOOGLE_UID;
+  const [editingPost, setEditingPost] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -125,9 +126,20 @@ function App() {
           )}
         </div>
 
-        {user?.uid === myUid && <NewPostForm onAddPost={handleAddPost} />}
+        {user?.uid === myUid && (
+          <NewPostForm
+            onAddPost={handleAddPost}
+            editingPost={editingPost}
+            setEditingPost={setEditingPost}
+          />
+        )}
 
-        <PostList posts={filteredPosts} />
+        <PostList
+          posts={filteredPosts}
+          user={user}
+          myUid={myUid}
+          onEdit={setEditingPost}
+        />
       </div>
     </div>
   );
