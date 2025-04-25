@@ -68,9 +68,11 @@ function App() {
   return (
     <div className="font-lora bg-gray-50 min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto p-4">
-        <h1 className="text-3xl font-bold text-center mb-6">
-          📚 Архив прозы и поэзии
-        </h1>
+        <img
+          src="/logo.png"
+          alt="My Literature Archive — powered by Vitali Pazdniakou"
+          className="mx-auto mb-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+        />
 
         {user?.uid === myUid && (
           <p className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded mb-4 text-right">
@@ -141,6 +143,11 @@ function App() {
           onEdit={setEditingPost}
         />
       </div>
+      <footer className="mt-12 text-center text-sm text-gray-400 leading-relaxed">
+        © {new Date().getFullYear()} Виталий Поздняков. Все тексты защищены
+        авторским правом. <br />
+        Копирование или распространение без согласия автора запрещено.
+      </footer>
     </div>
   );
 }
