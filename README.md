@@ -76,4 +76,100 @@ npm run dev
 
 > “Silence is a word, too.”
 
-📎 Polish version available soon
+---
+
+![My Literature Archive Logo](public/logo.png)
+
+Osobisty archiwum literacki do publikowania i przeglądania poezji oraz prozy.
+Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków i filtrowaniem według tagów.
+
+
+---
+
+🛠️ Technologie
+
+React — framework frontendowy oparty na komponentach
+
+Vite — szybkie narzędzie do budowania aplikacji
+
+Tailwind CSS — narzędzie do stylizacji typu utility-first
+
+Firebase Firestore — baza danych w chmurze
+
+Git & GitHub — kontrola wersji
+
+Vercel — hosting i CI/CD
+
+
+---
+
+🚀 Jak zacząć
+
+1. Sklonuj repozytorium:
+
+```bash
+git clone https://github.com/vitalipazdniakou/react-lit-archive.git
+cd react-lit-archive
+```
+
+2. Zainstaluj zależności:
+
+```bash
+npm install
+```
+
+3. Utwórz plik .env i dodaj konfigurację Firebase:
+
+```env
+VITE_FIREBASE_API_KEY=...
+VITE_FIREBASE_AUTH_DOMAIN=...
+VITE_FIREBASE_PROJECT_ID=...
+VITE_FIREBASE_STORAGE_BUCKET=...
+VITE_FIREBASE_MESSAGING_SENDER_ID=...
+VITE_FIREBASE_APP_ID=...
+```
+
+4. Uruchom serwer deweloperski:
+
+```bash
+npm run dev
+```
+
+---
+
+✨ Funkcje
+
+Dodawanie i wyświetlanie wpisów literackich (proza lub poezja)
+
+Zachowanie formatowania tekstu (np. podziały wierszy)
+
+Wyszukiwanie pełnotekstowe w treści i tytułach
+
+Filtrowanie według języka: rosyjski, białoruski, polski
+
+Filtrowanie według tagów i chmura tagów
+
+Minimalistyczny układ w stylu magazynu
+
+
+---
+
+📸 Zrzuty ekranu
+
+(Tutaj możesz dodać zrzuty ekranu, np. /public/preview.png)
+
+
+---
+
+🌐 Wersja online
+
+🔗 [Zobacz na Vercel](https://react-lit-archive.vercel.app/)
+
+
+---
+
+🧠 Autor
+
+**[Witalij Pozdniakow](https://github.com/vipozdniakov)**
+
+> „Cisza to też słowo.”
