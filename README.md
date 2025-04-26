@@ -1,5 +1,7 @@
 # 📚 My Literature Archive
 
+![My Literature Archive Logo](public/logo.png)
+
 A personal literature archive for publishing and browsing poetry and prose.  
 The design follows a modern online magazine layout, with support for multiple languages and tag-based filtering.
 
@@ -78,11 +80,12 @@ npm run dev
 
 ---
 
+# 📚 My Literature Archive
+
 ![My Literature Archive Logo](public/logo.png)
 
 Osobisty archiwum literacki do publikowania i przeglądania poezji oraz prozy.
 Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków i filtrowaniem według tagów.
-
 
 ---
 
@@ -99,7 +102,6 @@ Firebase Firestore — baza danych w chmurze
 Git & GitHub — kontrola wersji
 
 Vercel — hosting i CI/CD
-
 
 ---
 
@@ -151,20 +153,17 @@ Filtrowanie według tagów i chmura tagów
 
 Minimalistyczny układ w stylu magazynu
 
-
 ---
 
 📸 Zrzuty ekranu
 
 (Tutaj możesz dodać zrzuty ekranu, np. /public/preview.png)
 
-
 ---
 
 🌐 Wersja online
 
 🔗 [Zobacz na Vercel](https://react-lit-archive.vercel.app/)
-
 
 ---
 
