@@ -6,62 +6,91 @@ import {
   doc,
   serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../firebase-config";
 
-export function NewPostForm({ onAddPost, editingPost, setEditingPost }) {
+export function NewPostForm({
+  onAddPost,
+  onEditPost,
+  editingPost,
+  setEditingPost,
+}) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [language, setLanguage] = useState("RU");
   const [tags, setTags] = useState("");
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imageCredit, setImageCredit] = useState("");
+  const [imageSource, setImageSource] = useState("");
+  const [toast, setToast] = useState(null);
 
-  // Подставляем данные редактируемой публикации
+  // Pre-fill form when editing
   useEffect(() => {
     if (editingPost) {
       setTitle(editingPost.title || "");
       setContent(editingPost.content || "");
       setLanguage(editingPost.language || "RU");
       setTags(editingPost.tags?.join(", ") || "");
-      setMessage(null);
-      setError(null);
+      setImageCredit(editingPost.imageCredit || "");
+      setImageSource(editingPost.imageSource || "");
     }
   }, [editingPost]);
 
+  // Clear form fields
   const clearForm = () => {
     setTitle("");
     setContent("");
     setTags("");
     setLanguage("RU");
+    setImageFile(null);
+    setImageCredit("");
+    setImageSource("");
     setEditingPost(null);
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(null);
-    setError(null);
 
     if (!title.trim() || !content.trim()) {
-      setError("Введите заголовок и текст публикации.");
+      setToast({
+        type: "error",
+        text: "Please fill in both the title and the content.",
+      });
       return;
     }
 
-    const postData = {
-      title,
-      content,
-      language,
-      tags: tags.split(",").map((tag) => tag.trim()),
-    };
+    let imageUrl = editingPost?.imageUrl || "";
 
     try {
+      if (imageFile) {
+        const processedFile = await processImage(imageFile);
+        const storageRef = ref(
+          storage,
+          `images/${Date.now()}_${processedFile.name}`
+        );
+        await uploadBytes(storageRef, processedFile);
+        imageUrl = await getDownloadURL(storageRef);
+      }
+
+      const postData = {
+        title,
+        content,
+        language,
+        tags: tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag !== ""),
+        imageUrl,
+        imageCredit: imageCredit.trim(),
+        imageSource: imageSource.trim(),
+      };
+
       if (editingPost) {
-        // Обновление существующей публикации
         const postRef = doc(db, "posts", editingPost.id);
         await updateDoc(postRef, postData);
-        setMessage("✅ Публикация обновлена.");
-        setEditingPost(null);
+        onEditPost({ ...editingPost, ...postData });
       } else {
-        // Добавление новой публикации
         const newPost = {
           ...postData,
           createdAt: serverTimestamp(),
@@ -72,48 +101,91 @@ export function NewPostForm({ onAddPost, editingPost, setEditingPost }) {
           id: docRef.id,
           createdAt: { seconds: Date.now() / 1000 },
         });
-        setMessage("✅ Публикация успешно добавлена.");
       }
 
       clearForm();
     } catch (err) {
-      console.error("Ошибка при сохранении публикации:", err);
-      setError("❌ Не удалось сохранить публикацию. " + err.message);
+      console.error("Error saving post:", err);
+      setToast({
+        type: "error",
+        text: "❌ Failed to save the post. " + err.message,
+      });
     }
+  };
+
+  const processImage = async (file) => {
+    if (file.type !== "image/png") {
+      return file;
+    }
+
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob(
+            (blob) => {
+              const newFile = new File(
+                [blob],
+                file.name.replace(/\.png$/, ".jpg"),
+                {
+                  type: "image/jpeg",
+                  lastModified: Date.now(),
+                }
+              );
+              resolve(newFile);
+            },
+            "image/jpeg",
+            0.8
+          );
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-8">
       <h2 className="text-xl font-semibold mb-4">
-        {editingPost ? "Редактировать публикацию" : "Новая публикация"}
+        {editingPost ? "Edit Post" : "New Post"}
       </h2>
 
+      {/* Title */}
       <input
         className="w-full border rounded p-2 mb-2"
         type="text"
-        placeholder="Заголовок"
+        placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
 
+      {/* Content */}
       <textarea
         className="w-full border rounded p-2 mb-2"
         rows="6"
-        placeholder="Текст (поэзия или проза)"
+        placeholder="Content (poetry or prose)"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
 
+      {/* Tags */}
       <input
         className="w-full border rounded p-2 mb-2"
         type="text"
-        placeholder="Теги через запятую (например: любовь,осень,свобода)"
+        placeholder="Tags separated by commas (e.g., love, autumn, freedom)"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
       />
 
+      {/* Language */}
       <select
-        className="w-full border rounded p-2 mb-4"
+        className="w-full border rounded p-2 mb-2"
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
       >
@@ -122,12 +194,53 @@ export function NewPostForm({ onAddPost, editingPost, setEditingPost }) {
         <option value="PL">Polski</option>
       </select>
 
+      {/* Image upload */}
+      <div className="mb-4">
+        <label className="block mb-1 font-medium">
+          Attach an image (optional):
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImageFile(e.target.files[0])}
+          className="w-full"
+        />
+        {editingPost?.imageUrl && (
+          <div className="mt-2">
+            <img
+              src={editingPost.imageUrl}
+              alt="Current"
+              className="w-48 rounded-xl border-2 border-white shadow"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Image Credit */}
+      <input
+        className="w-full border rounded p-2 mb-2"
+        type="text"
+        placeholder="Image Credit (e.g., Biegun Wschodni)"
+        value={imageCredit}
+        onChange={(e) => setImageCredit(e.target.value)}
+      />
+
+      {/* Image Source URL */}
+      <input
+        className="w-full border rounded p-2 mb-4"
+        type="url"
+        placeholder="Image Source URL (e.g., https://unsplash.com/...)"
+        value={imageSource}
+        onChange={(e) => setImageSource(e.target.value)}
+      />
+
+      {/* Buttons */}
       <div className="flex gap-4">
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-buttonPrimary hover:bg-buttonPrimaryHover text-white font-bold py-2 px-4 rounded transition-colors"
         >
-          {editingPost ? "Обновить" : "Добавить"}
+          {editingPost ? "Update" : "Publish"}
         </button>
         {editingPost && (
           <button
@@ -135,13 +248,23 @@ export function NewPostForm({ onAddPost, editingPost, setEditingPost }) {
             onClick={clearForm}
             className="text-sm text-gray-600 hover:underline"
           >
-            Отмена
+            Cancel
           </button>
         )}
       </div>
 
-      {message && <p className="text-green-600 mt-4">{message}</p>}
-      {error && <p className="text-red-600 mt-4">{error}</p>}
+      {/* Toast */}
+      {toast && (
+        <div
+          className={`mt-4 p-2 rounded text-sm ${
+            toast.type === "success"
+              ? "text-buttonPrimary bg-blue-50"
+              : "text-alertError bg-red-50"
+          }`}
+        >
+          {toast.text}
+        </div>
+      )}
     </form>
   );
 }
