@@ -71,9 +71,21 @@ npm run dev
 
 - Minimalist magazine-style layout / Minimalistyczny układ w stylu magazynu
 
+## 🔒 Security Practices / Praktyki bezpieczeństwa
+
+This project follows modern security best practices: / Projekt stosuje nowoczesne praktyki bezpieczeństwa:
+
+- Sensitive data like API keys is managed via environment variables (.env). / Wrażliwe dane, takie jak klucze API, są zarządzane za pomocą zmiennych środowiskowych (.env).
+
+- API keys are domain-restricted and only allowed minimal necessary access. / Klucze API są ograniczone do wybranych domen i mają minimalnie wymagane uprawnienia.
+
+- Repository history has been fully cleaned of sensitive information. / Historia repozytorium została w pełni oczyszczona z poufnych informacji.
+
+✅ The project is safe for public deployment and complies with open-source security standards. / Projekt jest bezpieczny do publicznego wdrożenia i zgodny ze standardami bezpieczeństwa open source.
+
 ## 🧠 Author / Autor
 
 **[Vitali Pazdniakou](https://github.com/vipozdniakov)**
 
-> "Silence is a word, too."
+> "Silence is a word, too." /
 > „Cisza to też słowo.”
