@@ -120,7 +120,7 @@ export function PostList({ posts, user, myUid, onEdit, onDelete }) {
 
             {/* Language */}
             <p className="text-sm text-textSecondary mb-4">
-              Language: {post.language}
+              Язык: {post.language}
             </p>
 
             {/* Content */}

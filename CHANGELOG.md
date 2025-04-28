@@ -109,21 +109,6 @@ Przezroczysty i nowoczesny nagłówek z rozmyciem tła podczas przewijania; logo
 
 ---
 
-## 📅 Next Plans / Plany na przyszłość
-
-- ✏️ Admin editing of published posts directly inside the post view. /
-  ✏️ Możliwość edytowania opublikowanych materiałów bezpośrednio w widoku posta.
-
-- 📑 Advanced sorting of posts by tags and publication dates. / 📑 Zaawansowane sortowanie postów według tagów i daty publikacji.
-
-- 🧹 Code optimization and components refactoring for better performance. / 🧹 Optymalizacja kodu i refaktoryzacja komponentów dla lepszej wydajności.
-
-- 🛡️ Further strengthening of security measures and server-side validation. / 🛡️ Dalsze wzmocnienie środków bezpieczeństwa i walidacja po stronie serwera.
-
-- 🌐 Adding multi-language UI support (interface texts in RU / BY / PL). / 🌐 Dodanie obsługi wielojęzycznego interfejsu (teksty w RU / BY / PL).
-
----
-
 ## ➡️ Notes / Notatki
 
 Future updates will continue in English and Polish. /
