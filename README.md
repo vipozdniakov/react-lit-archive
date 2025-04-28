@@ -71,6 +71,8 @@ npm run dev
 
 - Minimalist magazine-style layout / Minimalistyczny układ w stylu magazynu
 
+- 📈 Visitor statistics with Google Analytics 4 integration. / 📈 Statystyki odwiedzin dzięki integracji z Google Analytics 4.
+
 ## 🔒 Security Practices / Praktyki bezpieczeństwa
 
 This project follows modern security best practices: / Projekt stosuje nowoczesne praktyki bezpieczeństwa:
