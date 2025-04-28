@@ -11,6 +11,15 @@ i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [1.1.1] — 2025-04-28
+
+### 📝 Updated / Zaktualizowano
+
+- Fixed repository URL in README.md to point to the correct GitHub account.
+- Naprawiono adres URL repozytorium w README.md, aby wskazywał poprawne konto GitHub.
+
+---
+
 ## [1.1.0] — 2025-04-27
 
 ### ✨ Added / Dodano
