@@ -131,7 +131,13 @@ export function PostList({ posts, user, myUid, onEdit, onDelete }) {
                   : "max-h-full"
               }`}
             >
-              <pre className="prose max-w-prose font-lora indent-paragraph text-textMain whitespace-pre-wrap">
+              <pre
+                className={`prose font-lora text-textMain ${
+                  post.postType === "poetry"
+                    ? "max-w-md whitespace-pre-line"
+                    : "max-w-prose indent-paragraph whitespace-pre-wrap"
+                }`}
+              >
                 {contentToShow}
                 {!isExpanded && needsTruncate && "…"}
               </pre>

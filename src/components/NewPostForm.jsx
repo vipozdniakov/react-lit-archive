@@ -23,6 +23,7 @@ export function NewPostForm({
   const [imageCredit, setImageCredit] = useState("");
   const [imageSource, setImageSource] = useState("");
   const [toast, setToast] = useState(null);
+  const [postType, setPostType] = useState("prose");
 
   // Pre-fill form when editing
   useEffect(() => {
@@ -33,6 +34,7 @@ export function NewPostForm({
       setTags(editingPost.tags?.join(", ") || "");
       setImageCredit(editingPost.imageCredit || "");
       setImageSource(editingPost.imageSource || "");
+      setPostType(editingPost.type || "prose");
     }
   }, [editingPost]);
 
@@ -77,6 +79,7 @@ export function NewPostForm({
         title,
         content,
         language,
+        type: postType,
         tags: tags
           .split(",")
           .map((tag) => tag.trim())
@@ -192,6 +195,16 @@ export function NewPostForm({
         <option value="RU">Русский</option>
         <option value="BY">Беларуская</option>
         <option value="PL">Polski</option>
+      </select>
+
+      {/* Post Type */}
+      <select
+        className="w-full border rounded p-2 mb-4"
+        value={postType}
+        onChange={(e) => setPostType(e.target.value)}
+      >
+        <option value="prose">Prose</option>
+        <option value="poetry">Poetry</option>
       </select>
 
       {/* Image upload */}

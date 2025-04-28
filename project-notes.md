@@ -44,6 +44,7 @@
 
 ## 📋 Roadmap / Future Ideas
 
+- [ ] Implement separate styling for prose and poetry posts
 - [ ] Implement inline editing of posts without switching to a separate form
 - [ ] Add multilingual UI (RU / BY / PL interface)
 - [ ] Enhance sorting options (tags, dates, popularity)
@@ -54,7 +55,6 @@
 - [ ] Code optimization and components refactoring for better performance.
 - [ ] Further strengthening of security measures and server-side validation.
 - [ ] Make the admin form for creating a new post appear only after clicking the "New Post" button, instead of showing it by default.
-- [ ] Implement separate styling for prose and poetry posts
 
 ---
 
@@ -64,6 +64,21 @@
 - [x] Firebase security rules enforced for Firestore and Storage
 - [x] Sensitive environment variables moved to `.env`
 - [x] Repository history cleaned from exposed secrets
+
+---
+
+## ✅ Update: Google Authentication Issue Resolved (2025-04-28)
+
+- Firebase Authentication through Google Sign-In is now fully functional in both local development (`localhost:5173`) and production (`https://react-lit-archive.vercel.app`).
+- OAuth 2.0 Client settings updated:
+  - Authorized JavaScript Origins and Redirect URIs configured for all active domains.
+- API Key restrictions updated:
+  - Allowed `localhost`, `localhost:5173`, `my-lit-archive.firebaseapp.com`, and `react-lit-archive.vercel.app`.
+- Slight warning about `Cross-Origin-Opener-Policy` and occasional `403 Forbidden` in console from `getProjectConfig` API is **non-critical**:
+  - Login flow is not affected.
+  - No user-visible errors occur.
+
+Project successfully restored and secured after key compromise cleanup.
 
 ---
 
