@@ -3,6 +3,20 @@ import React, { useState, useRef } from "react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 
+// Map stored language codes to ISO language codes
+const mapLanguageCode = (lang) => {
+  switch (lang) {
+    case "RU":
+      return "ru";
+    case "BY":
+      return "be";
+    case "PL":
+      return "pl";
+    default:
+      return "ru"; // fallback
+  }
+};
+
 const PREVIEW_LIMIT = 600; // Character limit for collapsed posts
 
 export function PostList({ posts, user, myUid, onEdit, onDelete }) {
@@ -67,6 +81,7 @@ export function PostList({ posts, user, myUid, onEdit, onDelete }) {
             key={post.id}
             ref={(el) => (refs.current[post.id] = el)}
             className="group bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition duration-300"
+            lang={mapLanguageCode(post.language)}
           >
             {/* Image */}
             {post.imageUrl && (
