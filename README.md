@@ -1,10 +1,8 @@
 # 📚 My Literature Archive / Moje Archiwum Literatury
 
-A personal literature archive for publishing and browsing poetry and prose.
-Osobiste archiwum literackie do publikowania i przeglądania poezji oraz prozy.
+A personal literature archive for publishing and browsing poetry and prose. / Osobiste archiwum literackie do publikowania i przeglądania poezji oraz prozy.
 
-The design follows a modern online magazine layout, with support for multiple languages and tag-based filtering.
-Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków i filtrowaniem według tagów.
+The design follows a modern online magazine layout, with support for multiple languages and tag-based filtering. / Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków i filtrowaniem według tagów.
 
 ---
 
@@ -32,7 +30,7 @@ Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu jęz
 1. Clone the repository / Sklonuj repozytorium:
 
 ```bash
-git clone https://github.com/vitalipazdniakou/react-lit-archive.git
+git clone https://github.com/vipozdniakov/react-lit-archive.git
 cd react-lit-archive
 ```
 
