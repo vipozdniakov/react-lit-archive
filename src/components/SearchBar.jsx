@@ -8,7 +8,7 @@ export function SearchBar({ query, onChange }) {
         placeholder="Поиск по заголовку или содержанию..."
         value={query}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border p-2"
+        className="w-full border p-2 rounded"
       />
     </div>
   );

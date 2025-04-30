@@ -5,7 +5,7 @@ import { auth } from "../firebase-config";
 const UserPanel = ({ user }) => {
   return (
     <div className="bg-white shadow p-4 rounded-xl mb-6 flex justify-between items-center text-sm text-gray-700">
-      <span>
+      <span className="mr-3">
         Logged in as <span className="font-semibold">{user.displayName}</span>
       </span>
       <button
