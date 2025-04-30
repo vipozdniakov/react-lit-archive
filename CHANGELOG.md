@@ -11,6 +11,29 @@ i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [1.2.0] — 2025-04-30
+
+### ✨ Added / Dodano
+
+Tag frequency-based opacity system per language. / System przezroczystości tagów oparty na ich częstotliwości w obrębie danego języka.
+
+New color scheme for tags using Tailwind’s neutral and accent tones. / Nowa kolorystyka tagów z użyciem neutralnych i akcentujących barw Tailwind.
+
+Highlighted active tag using colored border matching the tag’s language. / Wyróżnianie aktywnego tagu kolorową ramką zgodną z językiem tagu.
+
+Language-aware tag sorting and grouping logic. / Sortowanie i grupowanie tagów zgodnie z językiem.
+
+🎨 Refactored / Przebudowano
+Extracted multiple components: Header, Footer, ToastNotifications, TagFilter, LanguageFilter, TagDisplay. / Wydzielono wiele komponentów: Header, Footer, ToastNotifications, TagFilter, LanguageFilter, TagDisplay.
+
+Moved post fetching logic into custom hook usePosts. / Przeniesiono logikę pobierania postów do własnego hooka usePosts.
+
+Created utility functions: filterPosts, getAllTags. / Utworzono funkcje pomocnicze: filterPosts, getAllTags.
+
+Improved tag filter layout and interaction for usability. / Udoskonalono układ i interakcję chmury tagów dla lepszej użyteczności.
+
+---
+
 ## [1.1.2] — 2025-04-28
 
 ### 🛡️ Security Improvements / Ulepszenia bezpieczeństwa

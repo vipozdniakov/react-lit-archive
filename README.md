@@ -2,7 +2,7 @@
 
 A personal literature archive for publishing and browsing poetry and prose. / Osobiste archiwum literackie do publikowania i przeglądania poezji oraz prozy.
 
-The design follows a modern online magazine layout, with support for multiple languages and tag-based filtering. / Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków i filtrowaniem według tagów.
+The design follows a modern online magazine layout, with support for multiple languages and tag-based filtering. Now includes a dynamic tag cloud with frequency-based styling and a modular component structure. / Projekt inspirowany nowoczesnym układem magazynu online, z obsługą wielu języków, filtrowaniem według tagów, dynamiczną chmurą tagów i modułową strukturą komponentów.
 
 ---
 
@@ -60,30 +60,47 @@ npm run dev
 ## ✨ Features / Funkcje
 
 - Add and display literature entries (prose or poetry) / Dodawanie i wyświetlanie wpisów literackich (proza lub poezja)
-
 - Text formatting preserved (e.g., line breaks in poetry) / Zachowanie formatowania tekstu (np. podziały wierszy)
-
 - Full-text search across content and titles / Wyszukiwanie pełnotekstowe w treści i tytułach
-
 - Language filter: Russian, Belarusian, Polish / Filtrowanie według języka: rosyjski, białoruski, polski
-
-- Tag-based filtering with tag cloud / Filtrowanie według tagów i chmura tagów
-
+- Tag-based filtering with frequency-based tag cloud / Filtrowanie według tagów z dynamiczną chmurą opartą na częstotliwości
 - Minimalist magazine-style layout / Minimalistyczny układ w stylu magazynu
-
-- 📈 Visitor statistics with Google Analytics 4 integration. / 📈 Statystyki odwiedzin dzięki integracji z Google Analytics 4.
+- Modular component architecture for easier scaling / Modułowa architektura komponentów ułatwiająca rozwój projektu
+- 📈 Visitor statistics with Google Analytics 4 integration / 📈 Statystyki odwiedzin dzięki integracji z Google Analytics 4
 
 ## 🔒 Security Practices / Praktyki bezpieczeństwa
 
 This project follows modern security best practices: / Projekt stosuje nowoczesne praktyki bezpieczeństwa:
 
 - Sensitive data like API keys is managed via environment variables (.env). / Wrażliwe dane, takie jak klucze API, są zarządzane za pomocą zmiennych środowiskowych (.env).
-
 - API keys are domain-restricted and only allowed minimal necessary access. / Klucze API są ograniczone do wybranych domen i mają minimalnie wymagane uprawnienia.
-
 - Repository history has been fully cleaned of sensitive information. / Historia repozytorium została w pełni oczyszczona z poufnych informacji.
 
 ✅ The project is safe for public deployment and complies with open-source security standards. / Projekt jest bezpieczny do publicznego wdrożenia i zgodny ze standardami bezpieczeństwa open source.
+
+## 🧩 Project Structure / Struktura projektu
+
+```txt
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── Footer.jsx
+│   ├── TagFilter.jsx
+│   ├── TagDisplay.jsx
+│   ├── ToastNotifications.jsx
+│   ├── LanguageFilter.jsx
+│   └── ...
+├── hooks/
+│   └── usePosts.js
+├── utils/
+│   ├── filterPosts.js
+│   └── getAllTags.js
+└── App.jsx
+```
+
+## 📄 Changelog / Dziennik zmian
+
+See [CHANGELOG.md](./CHANGELOG.md) for release notes. / Zobacz [CHANGELOG.md](./CHANGELOG.md), aby przeczytać notatki o wersjach.
 
 ## 🧠 Author / Autor
 

@@ -55,8 +55,6 @@
 - [ ] Code optimization and components refactoring for better performance.
 - [ ] Further strengthening of security measures and server-side validation.
 - [ ] Make the admin form for creating a new post appear only after clicking the "New Post" button, instead of showing it by default.
-- [ ] Implement separate styling for prose and poetry posts
-- [ ] Implement inline editing of posts without switching to a separate form
 - [ ] Detect '#series' tag and sort such posts from oldest to newest instead of newest-first
 - [ ] Add mini-book view for series:
 - [ ] [ ] Clicking a chapter opens a full-screen reading mode
