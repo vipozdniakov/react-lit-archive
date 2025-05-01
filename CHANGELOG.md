@@ -1,15 +1,8 @@
-# 📜 Changelog / Historia zmian
+# Changelog
 
-All notable changes to this project are documented in this file. /
-Wszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /
-Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-
-and adheres to [Semantic Versioning](https://semver.org/). /
-i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
-
----
+## [1.3.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.2.0...v1.3.0) (2025-05-01)
 
 ## [1.2.0] — 2025-04-30
 
