@@ -11,7 +11,15 @@ const HEADER_OFFSET = 100; // Offset height for scrolling past sticky header
 const mapLanguageCode = (lang) =>
   ({ RU: "ru", BY: "be", PL: "pl" }[lang] || "ru");
 
-export function PostList({ posts, user, myUid, onEdit, onDelete }) {
+export function PostList({
+  posts,
+  user,
+  myUid,
+  onEdit,
+  onDelete,
+  tagFilter,
+  setTagFilter,
+}) {
   const [expandedPosts, setExpandedPosts] = useState([]);
   const refs = useRef({}); // Map post IDs to element refs
 
@@ -160,6 +168,10 @@ export function PostList({ posts, user, myUid, onEdit, onDelete }) {
               tags={post.tags}
               language={post.language}
               tagStats={{ languagePostCounts, tagUsageByLanguage }}
+              onTagClick={(tag) => {
+                setTagFilter(tagFilter === tag ? "" : tag);
+              }}
+              activeTag={tagFilter}
             />
 
             {/* Admin controls */}

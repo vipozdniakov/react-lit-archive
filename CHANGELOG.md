@@ -1,8 +1,46 @@
-# Changelog
+# 📜 Changelog / Historia zmian
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project are documented in this file. /
+Wszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.
 
-## [1.3.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.2.0...v1.3.0) (2025-05-01)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /
+Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+
+and adheres to [Semantic Versioning](https://semver.org/). /
+i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
+
+---
+
+## [1.3.0] — 2025-05-01
+
+### ✨ Added / Dodano
+
+- Tags in post cards are now clickable and fully synchronized with the filter. /
+  Tagi w kartach postów są teraz klikalne i w pełni zsynchronizowane z filtrem.
+
+- Clicking a tag activates or deactivates it, just like in the tag cloud. /
+  Kliknięcie tagu aktywuje lub dezaktywuje go — tak jak w chmurze tagów.
+
+- Visual style of tags is now unified across all components, with clear highlighting of active tags. /
+  Styl wizualny tagów został ujednolicony we wszystkich komponentach, z wyraźnym podświetleniem aktywnych tagów.
+
+- Posts are now filtered immediately when clicking a tag inside the post. /
+  Posty są teraz filtrowane natychmiast po kliknięciu tagu wewnątrz posta.
+
+### 🎨 Refactored / Przebudowano
+
+- Clean separation of logic: `TagDisplay`, `TagFilter`, and `PostList` now communicate through consistent props. /
+  Wyraźne rozdzielenie logiki: `TagDisplay`, `TagFilter` i `PostList` komunikują się teraz za pomocą spójnych właściwości.
+
+- Removed unused props and ensured memoization dependencies are complete. /
+  Usunięto nieużywane właściwości i uzupełniono zależności w `useMemo`.
+
+---
+
+🔜 **Coming soon in 1.4.0:** multi-tag selection and advanced filtering UX. /
+🔜 **W wersji 1.4.0:** wybór wielu tagów i zaawansowany interfejs filtrowania.
+
+---
 
 ## [1.2.0] — 2025-04-30
 

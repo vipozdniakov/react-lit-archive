@@ -119,6 +119,8 @@ function App() {
             myUid={myUid}
             onEdit={setEditingPost}
             onDelete={handleDeletePost}
+            tagFilter={tagFilter}
+            setTagFilter={setTagFilter}
           />
         </div>
       </main>
