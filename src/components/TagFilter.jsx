@@ -28,9 +28,13 @@ export function TagFilter({ allTags, tagFilters, setTagFilters }) {
                 maxWidth: "100%",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.25rem",
               }}
             >
-              #{name}
+              <span>#{name}</span>
+              {isActive && <span className="text-xs opacity-60 ml-1">×</span>}
             </button>
           );
         })}

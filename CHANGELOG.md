@@ -1,13 +1,31 @@
-# Changelog
+# 📜 Changelog / Historia zmian
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project are documented in this file. /
+Wszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.
 
-## [1.4.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.3.0...v1.4.0) (2025-05-02)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /
+Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+and adheres to [Semantic Versioning](https://semver.org/). /
+i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
-### Features
+---
 
-* **tags:** enable multiple tag selection and filtering ([32c0768](https://github.com/vipozdniakov/react-lit-archive/commit/32c0768f1467f768cd571dea10da8073f466132b))
+## [1.4.0] — 2025-05-01
+
+### ✨ Added / Dodano
+
+- Multiple tag selection and strict filtering using `every()` logic /
+  Możliwość wyboru wielu tagów i ich ścisłe filtrowanie z użyciem logiki `every()`
+- Active tags are now highlighted in both the filter cloud and post cards /
+  Aktywne tagi są teraz wyróżniane zarówno w chmurze filtrów, jak i w kartach postów
+
+### 🧼 Cleaned / Wyczyśćono
+
+- Removed unused `tagColors` imports from components /
+  Usunięto nieużywane importy `tagColors` z komponentów
+
+---
 
 ## [1.3.0] — 2025-05-01
 

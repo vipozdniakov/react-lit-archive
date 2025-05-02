@@ -64,6 +64,7 @@ npm run dev
 - Text formatting preserved (e.g., line breaks in poetry) / Zachowanie formatowania tekstu (np. podziały wierszy)
 - Full-text search across content and titles / Wyszukiwanie pełnotekstowe w treści i tytułach
 - Language filter: Russian, Belarusian, Polish / Filtrowanie według języka: rosyjski, białoruski, polski
+- Multi-tag filtering (strict mode: all tags must match) / Filtrowanie według wielu tagów (tryb ścisły: wszystkie tagi muszą pasować)
 - Tag-based filtering with frequency-based tag cloud / Filtrowanie według tagów z dynamiczną chmurą opartą na częstotliwości
 - Minimalist magazine-style layout / Minimalistyczny układ w stylu magazynu
 - Modular component architecture for easier scaling / Modułowa architektura komponentów ułatwiająca rozwój projektu
