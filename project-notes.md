@@ -44,6 +44,13 @@
 
 ## 📋 Roadmap / Future Ideas
 
+- [ ] Add strict vs. loose tag filtering toggle (every vs. some)
+- [ ] Display a helpful message when no posts match active tag filters
+- [ ] Place the filtering mode toggle above the tag cloud, ideally below the search bar
+- [ ] Highlight filtering behavior ("any tag" vs "all tags") in the UI to avoid confusion
+- [ ] Optionally switch to `every()` by default as the number of posts grows
+- [ ] Refactor post filtering logic to support dynamic filtering strategies
+- [ ] Revisit tag structure (language, genre, series, mood) if multi-category filtering is needed in the future
 - [ ] Implement separate styling for prose and poetry posts
 - [ ] Implement inline editing of posts without switching to a separate form
 - [ ] Add multilingual UI (RU / BY / PL interface)

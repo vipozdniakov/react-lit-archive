@@ -1,4 +1,8 @@
-export function filterPosts(posts, query, languageFilter, tagFilter) {
+export function filterPosts(posts, query, languageFilter, tagFilters) {
+  if (!Array.isArray(tagFilters)) {
+    tagFilters = [];
+  }
+
   const sorted = [...posts].sort(
     (a, b) => b.createdAt?.seconds - a.createdAt?.seconds
   );
@@ -11,8 +15,10 @@ export function filterPosts(posts, query, languageFilter, tagFilter) {
     const matchesLanguage =
       languageFilter === "ALL" || post.language === languageFilter;
 
-    const matchesTag = !tagFilter || post.tags.includes(tagFilter);
+    const matchesTags =
+      tagFilters.length === 0 ||
+      tagFilters.every((tag) => post.tags.includes(tag));
 
-    return matchesQuery && matchesLanguage && matchesTag;
+    return matchesQuery && matchesLanguage && matchesTags;
   });
 }

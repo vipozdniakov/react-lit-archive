@@ -1,6 +1,5 @@
 // src/components/TagDisplay.jsx
 import React, { useMemo } from "react";
-import tagColors from "../utils/tagColors";
 import { getTagButtonClass } from "../utils/tagStyleHelpers";
 
 const BASE_OPACITY = 0.4;
@@ -16,7 +15,7 @@ export function TagDisplay({
   language,
   tagStats,
   onTagClick,
-  activeTag, // string
+  activeTags = [], // default to an empty array
 }) {
   const tagElements = useMemo(() => {
     const totalPostsForLang = tagStats.languagePostCounts[language] || 1;
@@ -31,7 +30,7 @@ export function TagDisplay({
     return sortedTags.map((tag) => {
       const tagCount = tagUsage[tag] || 1;
       const opacity = calculateOpacity(tagCount, totalPostsForLang);
-      const isActive = activeTag === tag;
+      const isActive = activeTags.includes(tag); // Check if the tag is active
       const className = `px-2 py-1 rounded-full text-sm whitespace-nowrap transition duration-200 ${getTagButtonClass(
         language,
         isActive
@@ -52,7 +51,7 @@ export function TagDisplay({
         </span>
       );
     });
-  }, [tags, language, tagStats, onTagClick, activeTag]);
+  }, [tags, language, tagStats, onTagClick, activeTags]);
 
   return <div className="flex flex-wrap gap-2 mt-6">{tagElements}</div>;
 }

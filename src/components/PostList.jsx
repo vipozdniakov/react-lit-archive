@@ -17,8 +17,8 @@ export function PostList({
   myUid,
   onEdit,
   onDelete,
-  tagFilter,
-  setTagFilter,
+  tagFilters,
+  setTagFilters,
 }) {
   const [expandedPosts, setExpandedPosts] = useState([]);
   const refs = useRef({}); // Map post IDs to element refs
@@ -169,9 +169,13 @@ export function PostList({
               language={post.language}
               tagStats={{ languagePostCounts, tagUsageByLanguage }}
               onTagClick={(tag) => {
-                setTagFilter(tagFilter === tag ? "" : tag);
+                setTagFilters((prev) =>
+                  prev.includes(tag)
+                    ? prev.filter((t) => t !== tag)
+                    : [...prev, tag]
+                );
               }}
-              activeTag={tagFilter}
+              activeTags={tagFilters}
             />
 
             {/* Admin controls */}

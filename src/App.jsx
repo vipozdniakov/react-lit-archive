@@ -24,7 +24,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [query, setQuery] = useState("");
   const [languageFilter, setLanguageFilter] = useState("ALL");
-  const [tagFilter, setTagFilter] = useState("");
+  const [tagFilters, setTagFilters] = useState([]);
   const [editingPost, setEditingPost] = useState(null);
   const [toast, setToast] = useState({ message: "", type: "" });
 
@@ -78,7 +78,8 @@ function App() {
   });
 
   // Filter posts by query, language, and tag
-  const filteredPosts = filterPosts(posts, query, languageFilter, tagFilter);
+  const filteredPosts = filterPosts(posts, query, languageFilter, tagFilters);
+
   return (
     <div className="font-lora bg-background min-h-screen">
       {/* Header with logo */}
@@ -98,8 +99,8 @@ function App() {
           {/* Tag filter */}
           <TagFilter
             allTags={allTags}
-            tagFilter={tagFilter}
-            setTagFilter={setTagFilter}
+            tagFilters={tagFilters}
+            setTagFilters={setTagFilters}
           />
 
           {/* New post form (admin only) */}
@@ -119,8 +120,8 @@ function App() {
             myUid={myUid}
             onEdit={setEditingPost}
             onDelete={handleDeletePost}
-            tagFilter={tagFilter}
-            setTagFilter={setTagFilter}
+            tagFilters={tagFilters}
+            setTagFilters={setTagFilters}
           />
         </div>
       </main>

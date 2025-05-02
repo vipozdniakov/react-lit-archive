@@ -1,6 +1,7 @@
 // src/utils/tagStyleHelpers.js
 import tagColors from "./tagColors";
 
+// Helper to decide styles based on language and active state
 export const getTagButtonClass = (language, isActive) => {
   const baseColor = tagColors[language] || "bg-gray-100 text-gray-800";
 
