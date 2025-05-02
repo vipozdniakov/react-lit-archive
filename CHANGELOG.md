@@ -1,15 +1,13 @@
-# 📜 Changelog / Historia zmian
+# Changelog
 
-All notable changes to this project are documented in this file. /
-Wszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /
-Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+## [1.4.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.3.0...v1.4.0) (2025-05-02)
 
-and adheres to [Semantic Versioning](https://semver.org/). /
-i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
----
+### Features
+
+* **tags:** enable multiple tag selection and filtering ([32c0768](https://github.com/vipozdniakov/react-lit-archive/commit/32c0768f1467f768cd571dea10da8073f466132b))
 
 ## [1.3.0] — 2025-05-01
 
