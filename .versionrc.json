@@ -1,0 +1,13 @@
+{
+  "types": [
+    { "type": "feat", "section": "✨ Added / Dodano" },
+    { "type": "fix", "section": "🐛 Fixed / Naprawiono" },
+    { "type": "chore", "section": "🧹 Maintenance / Porządki" },
+    { "type": "refactor", "section": "🎨 Refactored / Przebudowano" },
+    { "type": "docs", "section": "📝 Docs / Dokumentacja" }
+  ],
+  "skip": {
+    "tag": false
+  },
+  "header": "# 📜 Changelog / Historia zmian\n\nAll notable changes to this project are documented in this file. /\nWszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /\nFormat oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)\n\ni adheres to [Semantic Versioning](https://semver.org/). /\ni zgodny z [Semantic Versioning](https://semver.org/lang/pl/).\n\n---\n"
+}
