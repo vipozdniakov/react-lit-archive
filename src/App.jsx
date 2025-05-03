@@ -70,7 +70,9 @@ function App() {
   };
 
   // Extract all unique tags from posts
-  const allTags = getAllTags(posts);
+  const allTags = getAllTags(posts).filter((tag) =>
+    languageFilter === "ALL" ? true : tag.language === languageFilter
+  );
 
   // Sort posts by creation date
   const sortedPosts = [...posts].sort((a, b) => {
@@ -101,6 +103,7 @@ function App() {
             allTags={allTags}
             tagFilters={tagFilters}
             setTagFilters={setTagFilters}
+            languageFilter={languageFilter}
           />
 
           {/* New post form (admin only) */}

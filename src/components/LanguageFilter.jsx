@@ -13,8 +13,8 @@ export function LanguageFilter({ value, onChange }) {
         >
           <option value="ALL">Все</option>
           <option value="RU">Русский</option>
-          <option value="BY">Беларуская</option>
-          <option value="PL">Polski</option>
+          <option value="BY">Белорусский</option>
+          <option value="PL">Польский</option>
         </select>
       </label>
     </div>

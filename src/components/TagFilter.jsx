@@ -1,7 +1,12 @@
 import React from "react";
 import { getTagButtonClass } from "../utils/tagStyleHelpers";
 
-export function TagFilter({ allTags, tagFilters, setTagFilters }) {
+export function TagFilter({
+  allTags,
+  tagFilters,
+  setTagFilters,
+  languageFilter,
+}) {
   const toggleTag = (tag) => {
     setTagFilters((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
@@ -11,6 +16,19 @@ export function TagFilter({ allTags, tagFilters, setTagFilters }) {
   return (
     <div className="mb-6">
       <strong className="block mb-2 text-textMain">Теги:</strong>
+      {languageFilter !== "ALL" && (
+        <p className="text-sm text-textSecondary mb-2">
+          Показаны теги для языка:{" "}
+          <strong>
+            {languageFilter === "RU"
+              ? "русский"
+              : languageFilter === "PL"
+              ? "польский"
+              : "белорусский"}
+          </strong>
+        </p>
+      )}
+
       <div className="flex flex-wrap gap-2 max-w-full">
         {allTags.map(({ name, language }) => {
           const isActive = tagFilters.includes(name);
