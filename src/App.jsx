@@ -15,6 +15,7 @@ import ToastNotifications from "./components/ToastNotifications";
 import { LanguageFilter } from "./components/LanguageFilter";
 import { usePosts } from "./hooks/usePosts";
 import { filterPosts } from "./utils/filterPosts";
+import { useMemo } from "react";
 import { getAllTags } from "./utils/getAllTags";
 import AdminBadge from "./components/ui/AdminBadge";
 import { useScrollPosition } from "./hooks/useScrollPosition";
@@ -70,9 +71,12 @@ function App() {
   };
 
   // Extract all unique tags from posts
-  const allTags = getAllTags(posts).filter((tag) =>
-    languageFilter === "ALL" ? true : tag.language === languageFilter
-  );
+  const allTags = useMemo(() => {
+    const all = getAllTags(posts);
+    return languageFilter === "ALL"
+      ? all
+      : all.filter((tag) => tag.language === languageFilter);
+  }, [posts, languageFilter]);
 
   // Sort posts by creation date
   const sortedPosts = [...posts].sort((a, b) => {
