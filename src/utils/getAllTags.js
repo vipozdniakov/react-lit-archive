@@ -1,3 +1,4 @@
+// utils/getAllTags.js
 // Extract all unique tags
 
 export function getAllTags(posts) {

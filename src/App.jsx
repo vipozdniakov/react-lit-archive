@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase-config";
 
@@ -14,11 +14,10 @@ import Footer from "./components/Footer";
 import ToastNotifications from "./components/ToastNotifications";
 import { LanguageFilter } from "./components/LanguageFilter";
 import { usePosts } from "./hooks/usePosts";
-import { filterPosts } from "./utils/filterPosts";
-import { useMemo } from "react";
 import { getAllTags } from "./utils/getAllTags";
 import AdminBadge from "./components/ui/AdminBadge";
 import { useScrollPosition } from "./hooks/useScrollPosition";
+import { useFilteredPosts } from "./hooks/useFilteredPosts";
 
 function App() {
   // Global states
@@ -32,6 +31,9 @@ function App() {
   const myUid = import.meta.env.VITE_MY_GOOGLE_UID;
 
   const [posts, setPosts] = usePosts(); // Fetch posts from Firestore on component mount
+
+  const { filteredEnhancedPosts, languagePostCounts, tagUsageByLanguage } =
+    useFilteredPosts(posts, query, languageFilter, tagFilters);
 
   // Listen for authentication state changes
   useEffect(() => {
@@ -78,14 +80,6 @@ function App() {
       : all.filter((tag) => tag.language === languageFilter);
   }, [posts, languageFilter]);
 
-  // Sort posts by creation date
-  const sortedPosts = [...posts].sort((a, b) => {
-    return b.createdAt?.seconds - a.createdAt?.seconds;
-  });
-
-  // Filter posts by query, language, and tag
-  const filteredPosts = filterPosts(posts, query, languageFilter, tagFilters);
-
   return (
     <div className="font-lora bg-background min-h-screen">
       {/* Header with logo */}
@@ -122,7 +116,7 @@ function App() {
 
           {/* List of posts */}
           <PostList
-            posts={filteredPosts}
+            posts={filteredEnhancedPosts}
             user={user}
             myUid={myUid}
             onEdit={setEditingPost}

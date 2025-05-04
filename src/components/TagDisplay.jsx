@@ -1,54 +1,44 @@
 // src/components/TagDisplay.jsx
 import React, { useMemo } from "react";
+import { calculateOpacity } from "../utils/calculateOpacity";
 import { getTagButtonClass } from "../utils/tagStyleHelpers";
-
-const BASE_OPACITY = 0.4;
-
-// Compute dynamic tag opacity
-const calculateOpacity = (tagCount, totalPosts) => {
-  const proportion = tagCount / totalPosts;
-  return BASE_OPACITY + proportion * (1 - BASE_OPACITY);
-};
 
 export function TagDisplay({
   tags,
   language,
   tagStats,
   onTagClick,
-  activeTags = [], // default to an empty array
+  activeTags = [],
 }) {
   const tagElements = useMemo(() => {
     const totalPostsForLang = tagStats.languagePostCounts[language] || 1;
     const tagUsage = tagStats.tagUsageByLanguage[language] || {};
 
-    const sortedTags = [...tags].sort((a, b) => {
-      const countA = tagUsage[a] || 0;
-      const countB = tagUsage[b] || 0;
-      return countB - countA;
-    });
-
-    return sortedTags.map((tag) => {
+    return tags.map((tag) => {
       const tagCount = tagUsage[tag] || 1;
-      const opacity = calculateOpacity(tagCount, totalPostsForLang);
-      const isActive = activeTags.includes(tag); // Check if the tag is active
+      const isActive = activeTags.includes(tag);
+      const opacity = isActive
+        ? 1
+        : calculateOpacity(tagCount, totalPostsForLang);
       const className = `px-2 py-1 rounded-full text-sm whitespace-nowrap transition duration-200 ${getTagButtonClass(
         language,
         isActive
       )}`;
 
-      return onTagClick ? (
+      return (
         <button
           key={tag}
-          onClick={() => onTagClick(tag)}
+          onClick={() => onTagClick?.(tag)}
           className={className}
           style={{ opacity }}
         >
-          #{tag}
+          <span>#{tag}</span>
+          {isActive ? (
+            <span className="text-xs opacity-60 ml-1">×</span>
+          ) : (
+            <span className="text-xs opacity-0 ml-1 select-none">×</span>
+          )}
         </button>
-      ) : (
-        <span key={tag} className={className} style={{ opacity }}>
-          #{tag}
-        </span>
       );
     });
   }, [tags, language, tagStats, onTagClick, activeTags]);

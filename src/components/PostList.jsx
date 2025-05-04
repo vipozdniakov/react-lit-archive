@@ -1,7 +1,8 @@
 // src/components/PostList.jsx
-import React, { useState, useRef } from "react";
-import { doc, deleteDoc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
+import React, { useMemo, useRef, useState } from "react";
 import { db } from "../firebase-config";
+import { useTagStats } from "../hooks/useTagStats";
 import { TagDisplay } from "./TagDisplay";
 
 const PREVIEW_LIMIT = 600; // Character limit for collapsed posts
@@ -24,17 +25,17 @@ export function PostList({
   const refs = useRef({}); // Map post IDs to element refs
 
   // Count posts and tag usage by language
-  const languagePostCounts = {};
-  const tagUsageByLanguage = {};
+  const { languagePostCounts, tagUsageByLanguage, getSortedTags } =
+    useTagStats(posts);
 
-  posts.forEach((post) => {
-    const lang = post.language;
-    languagePostCounts[lang] = (languagePostCounts[lang] || 0) + 1;
-    post.tags.forEach((tag) => {
-      tagUsageByLanguage[lang] ||= {};
-      tagUsageByLanguage[lang][tag] = (tagUsageByLanguage[lang][tag] || 0) + 1;
+  // Filter posts based on search query and tag filters
+  const sortedTagsByPostId = useMemo(() => {
+    const map = {};
+    posts.forEach((post) => {
+      map[post.id] = getSortedTags(post.tags, post.language);
     });
-  });
+    return map;
+  }, [posts, getSortedTags]);
 
   // Delete post handler with confirmation
   const handleDelete = async (postId) => {
@@ -165,7 +166,7 @@ export function PostList({
 
             {/* Tags */}
             <TagDisplay
-              tags={post.tags}
+              tags={post.sortedTags}
               language={post.language}
               tagStats={{ languagePostCounts, tagUsageByLanguage }}
               onTagClick={(tag) => {

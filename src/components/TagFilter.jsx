@@ -1,6 +1,7 @@
 // src/components/TagFilter.jsx
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+import React, { useMemo } from "react";
+import { calculateOpacity } from "../utils/calculateOpacity";
 import { getTagButtonClass } from "../utils/tagStyleHelpers";
 
 export function TagFilter({
@@ -15,10 +16,13 @@ export function TagFilter({
     );
   };
 
-  const usageByTag = allTags.reduce((acc, { name, count }) => {
-    acc[name] = count;
-    return acc;
-  }, {});
+  const usageByTag = useMemo(() => {
+    return allTags.reduce((acc, { name, count }) => {
+      acc[name] = count;
+      return acc;
+    }, {});
+  }, [allTags]);
+
   const maxUsage = Math.max(...Object.values(usageByTag), 1);
 
   return (
@@ -50,12 +54,11 @@ export function TagFilter({
       {/* Tag cloud */}
       <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 pt-1 max-w-full">
         <AnimatePresence mode="popLayout">
-          {allTags.map(({ name, language }) => {
+          {allTags.map(({ name, language, count }) => {
             const isActive = tagFilters.includes(name);
-            const usage = usageByTag[name] || 1;
-            const normalized = usage / maxUsage;
+            const normalized = count / maxUsage;
             const fontSize = 0.75 + normalized * 0.4;
-            const opacity = isActive ? 1 : 0.4 + normalized * 0.6;
+            const opacity = isActive ? 1 : calculateOpacity(count, maxUsage);
 
             const className = [
               "px-2 py-1 text-sm rounded-full shrink-0 transition-colors duration-200",
@@ -67,10 +70,7 @@ export function TagFilter({
                 key={`${language}-${name}`}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{
-                  opacity: isActive ? 1 : opacity,
-                  scale: 1,
-                }}
+                animate={{ opacity: isActive ? 1 : opacity, scale: 1 }}
                 whileHover={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.25 }}
