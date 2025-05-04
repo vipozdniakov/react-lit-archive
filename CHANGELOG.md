@@ -6,10 +6,25 @@ Wszystkie istotne zmiany w tym projekcie są dokumentowane w tym pliku.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) /
 Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-and adheres to [Semantic Versioning](https://semver.org/). /
+i adheres to [Semantic Versioning](https://semver.org/). /
 i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
+
+## [1.5.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.4.0...v1.5.0) (2025-05-04)
+
+
+### 🧹 Maintenance / Porządki
+
+* **config:** add versionrc for custom changelog header ([7c055cb](https://github.com/vipozdniakov/react-lit-archive/commit/7c055cbf9be94a8ce61014a6b39ef2c843884068))
+
+
+### ✨ Added / Dodano
+
+* **tag-filter:** adjust tag opacity based on frequency ([781bcd6](https://github.com/vipozdniakov/react-lit-archive/commit/781bcd62200c9f1bc254d2a38634dfb7405fe807))
+* **tag-filter:** show "×" icon next to active tags ([55b329b](https://github.com/vipozdniakov/react-lit-archive/commit/55b329b4285526967df50e00d8d9330f2ef91db9))
+* **tag-filter:** show hint for selected language and simplify label logic ([b46edca](https://github.com/vipozdniakov/react-lit-archive/commit/b46edca2ea6e9ce8224368f79abf5981ca727c2a))
+* **tags:** animated and responsive tag cloud with popularity-based styling ([03d96c1](https://github.com/vipozdniakov/react-lit-archive/commit/03d96c1aa8268b5765431ccc1bbdb946df94acff))
 
 ## [1.4.0] — 2025-05-01
 
