@@ -1,7 +1,7 @@
 // src/components/TagFilter.jsx
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { getTagButtonClass } from "../utils/tagStyleHelpers";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function TagFilter({
   allTags,
@@ -55,7 +55,7 @@ export function TagFilter({
             const usage = usageByTag[name] || 1;
             const normalized = usage / maxUsage;
             const fontSize = 0.75 + normalized * 0.4;
-            const opacity = 0.4 + normalized * 0.6;
+            const opacity = isActive ? 1 : 0.4 + normalized * 0.6;
 
             const className = [
               "px-2 py-1 text-sm rounded-full shrink-0 transition-colors duration-200",
@@ -67,7 +67,10 @@ export function TagFilter({
                 key={`${language}-${name}`}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity, scale: 1 }}
+                animate={{
+                  opacity: isActive ? 1 : opacity,
+                  scale: 1,
+                }}
                 whileHover={{ opacity: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.25 }}
