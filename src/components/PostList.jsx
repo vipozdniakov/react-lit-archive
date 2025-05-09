@@ -2,6 +2,7 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import React, { useMemo, useRef, useState } from "react";
 import { db } from "../firebase-config";
+import { Link } from "react-router-dom";
 import { useTagStats } from "../hooks/useTagStats";
 import { TagDisplay } from "./TagDisplay";
 
@@ -118,7 +119,11 @@ export function PostList({
             )}
 
             {/* Title and language */}
-            <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+            <h2 className="text-2xl font-semibold mb-2">
+              <Link to={`/post/${post.id}`} className="hover:underline">
+                {post.title}
+              </Link>
+            </h2>
             <p className="text-sm text-textSecondary mb-4">
               Язык: {post.language}
             </p>
