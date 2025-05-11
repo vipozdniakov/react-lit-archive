@@ -29,25 +29,27 @@ export function LanguageFilter({ value, onChange }) {
   ];
 
   return (
-    <div className="flex items-center flex-wrap gap-2 px-4 py-2 mb-6 rounded-md border border-gray-200 bg-gray-50 text-sm font-medium">
-      <span className="text-textMain">Язык публикаций:</span>
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between flex-wrap gap-y-2 gap-x-4 px-4 py-2 mb-6 rounded-md border border-gray-200 bg-gray-50 text-sm font-medium">
+      <span className="text-textMain shrink-0">Язык публикаций:</span>
 
-      {languages.map(({ code, label }) => {
-        const isActive = value === code;
-        const style = isActive
-          ? LANG_STYLES[code].active
-          : LANG_STYLES[code].inactive;
+      <div className="flex flex-wrap gap-2">
+        {languages.map(({ code, label }) => {
+          const isActive = value === code;
+          const style = isActive
+            ? LANG_STYLES[code].active
+            : LANG_STYLES[code].inactive;
 
-        return (
-          <button
-            key={code}
-            onClick={() => onChange(code)}
-            className={`text-xs font-medium px-3 py-1 rounded-md border transition ${style}`}
-          >
-            {label}
-          </button>
-        );
-      })}
+          return (
+            <button
+              key={code}
+              onClick={() => onChange(code)}
+              className={`text-xs font-medium px-3 py-1 rounded-md border transition ${style}`}
+            >
+              {label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
