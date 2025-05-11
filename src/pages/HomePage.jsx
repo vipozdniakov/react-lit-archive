@@ -7,10 +7,9 @@ import { NewPostForm } from "../components/NewPostForm";
 import { PostList } from "../components/PostList";
 import { SearchBar } from "../components/SearchBar";
 import "../index.css";
+import PageContainer from "../layouts/PageContainer";
 
 import { TagFilter } from "../components/TagFilter";
-// import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ToastNotifications from "../components/ToastNotifications";
 import { LanguageFilter } from "../components/LanguageFilter";
 import { usePosts } from "../hooks/usePosts";
@@ -82,12 +81,7 @@ function App() {
 
   return (
     <div className="font-lora bg-background min-h-screen">
-      {/* Header with logo */}
-      {/* <Header isScrolled={isScrolled} /> */}
-
-      {/* Main content */}
-
-      <div className="max-w-2xl mx-auto p-4">
+      <PageContainer>
         <AdminBadge user={user} myUid={myUid} />
 
         {/* Search input */}
@@ -124,11 +118,9 @@ function App() {
           tagFilters={tagFilters}
           setTagFilters={setTagFilters}
         />
-      </div>
+      </PageContainer>
 
       <ToastNotifications toast={toast} />
-
-      <Footer />
     </div>
   );
 }
