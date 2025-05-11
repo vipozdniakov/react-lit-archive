@@ -69,6 +69,8 @@ npm run dev
 - Minimalist magazine-style layout / Minimalistyczny układ w stylu magazynu
 - Modular component architecture for easier scaling / Modułowa architektura komponentów ułatwiająca rozwój projektu
 - 📈 Visitor statistics with Google Analytics 4 integration / 📈 Statystyki odwiedzin dzięki integracji z Google Analytics 4
+- Scroll-to-top button integrated into post layout / Przycisk powrotu na górę zintegrowany z układem postów
+- Language label badges displayed next to post titles / Etykiety językowe wyświetlane obok tytułów postów
 
 ## 🔒 Security Practices / Praktyki bezpieczeństwa
 

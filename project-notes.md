@@ -44,33 +44,38 @@
 
 ## 📋 Roadmap / Future Ideas
 
-- [ ] Add strict vs. loose tag filtering toggle (every vs. some)
+- [ ] Add strict vs. loose tag filtering toggle (`every()` vs. `some()`)
 - [ ] Display a helpful message when no posts match active tag filters
-- [ ] Place the filtering mode toggle above the tag cloud, ideally below the search bar
-- [ ] Highlight filtering behavior ("any tag" vs "all tags") in the UI to avoid confusion
-- [ ] Optionally switch to `every()` by default as the number of posts grows
-- [ ] Refactor post filtering logic to support dynamic filtering strategies
-- [ ] Revisit tag structure (language, genre, series, mood) if multi-category filtering is needed in the future
-- [ ] Implement separate styling for prose and poetry posts
+- [ ] Place filtering mode toggle above the tag cloud, ideally below the search bar
+- [ ] Revisit tag structure (language, genre, series, mood) if multi-category filtering is needed
 - [ ] Implement inline editing of posts without switching to a separate form
 - [ ] Add multilingual UI (RU / BY / PL interface)
 - [ ] Enhance sorting options (tags, dates, popularity)
 - [ ] Implement dark mode support
 - [ ] Improve accessibility (ARIA attributes, keyboard navigation)
 - [ ] Add basic statistics panel for admin (number of posts, views)
-- [ ] Advanced sorting of posts by tags and publication dates.
-- [ ] Code optimization and components refactoring for better performance.
-- [ ] Further strengthening of security measures and server-side validation.
-- [ ] Make the admin form for creating a new post appear only after clicking the "New Post" button, instead of showing it by default.
-- [ ] Detect '#series' tag and sort such posts from oldest to newest instead of newest-first
+- [ ] Advanced sorting of posts by tags and publication dates
+- [ ] Code optimization and components refactoring for better performance
+- [ ] Further strengthening of security measures and server-side validation
+- [ ] Detect `#series` tag and sort such posts from oldest to newest
 - [ ] Add mini-book view for series:
-- [ ] [ ] Clicking a chapter opens a full-screen reading mode
-- [ ] [ ] Add left/right swipe to navigate between chapters
-- [ ] [ ] Add downward swipe or button to exit book view and return to feed
-- [ ] [ ] Reserve upward swipe for future use (e.g., bookmarks or settings)
-- [ ] In mini-book mode, show:
-- [ ] [ ] Block of chapter thumbnails with titles (highlight current)
-- [ ] [ ] Carousel of recommended posts under the chapter list
+  - [ ] Full-screen reading mode with chapter swiping
+  - [ ] Downward swipe or button to exit
+  - [ ] Reserve upward swipe for future use (e.g., bookmarks or settings)
+  - [ ] Chapter thumbnails and carousel of recommended posts
+
+---
+
+## ✅ Completed Milestones
+
+### 🔄 2025-05-11 — Interface Enhancements
+
+- Switched all components to named exports for consistency
+- Unification of language filter buttons and inline badges across views
+- Poetry and prose are now styled distinctly and responsively
+- Scroll-to-top button refactored and repositioned within page container
+- Refined tag interaction and animation logic
+- Removed "Language: XX" label from post cards and added subtle badge beside title
 
 ---
 
@@ -85,21 +90,14 @@
 
 ## ✅ Update: Google Authentication Issue Resolved (2025-04-28)
 
-- Firebase Authentication through Google Sign-In is now fully functional in both local development (`localhost:5173`) and production (`https://react-lit-archive.vercel.app`).
-- OAuth 2.0 Client settings updated:
-  - Authorized JavaScript Origins and Redirect URIs configured for all active domains.
-- API Key restrictions updated:
-  - Allowed `localhost`, `localhost:5173`, `my-lit-archive.firebaseapp.com`, and `react-lit-archive.vercel.app`.
-- Slight warning about `Cross-Origin-Opener-Policy` and occasional `403 Forbidden` in console from `getProjectConfig` API is **non-critical**:
-  - Login flow is not affected.
-  - No user-visible errors occur.
-
-Project successfully restored and secured after key compromise cleanup.
+- Firebase Authentication through Google Sign-In is now fully functional in both local development and production.
+- OAuth and API key restrictions updated and verified.
+- Console warnings (`403`, COOP/COEP) are non-critical and do not affect functionality.
 
 ---
 
 ## 🧠 Miscellaneous
 
-- Image optimization on upload: PNG → JPG conversion with compression
+- PNG → JPG conversion with compression for uploaded images
 - Posts longer than 600 characters have smooth expand/collapse animation
-- Responsive layout (mobile/tablet/desktop)
+- Fully responsive layout across all devices
