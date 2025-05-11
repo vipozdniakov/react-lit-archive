@@ -11,6 +11,24 @@ i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
+## [1.6.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.5.0...v1.6.0) (2025-05-11)
+
+
+### 📝 Docs / Dokumentacja
+
+* **changelog:** add entry for 1.5.0 release ([2de1398](https://github.com/vipozdniakov/react-lit-archive/commit/2de13988e6a5eecf6c2b004f9480dc97efbf1469))
+
+
+### ✨ Added / Dodano
+
+* improve logo behavior — scroll to top if on homepage, else navigate to it ([fd62732](https://github.com/vipozdniakov/react-lit-archive/commit/fd62732b1a3cc1040660e71551891e419f63eeda))
+
+
+### 🎨 Refactored / Przebudowano
+
+* relocate and restyle scroll-to-top button for better UX ([dc37941](https://github.com/vipozdniakov/react-lit-archive/commit/dc379410cdb4d83030fdfd25553b9517f92af1f5))
+* switch to named exports + redesign language filter buttons ([74ce1b7](https://github.com/vipozdniakov/react-lit-archive/commit/74ce1b7753fa50148e054babd23e668a6c3ba46d))
+
 ## [1.5.0] — 2025-05-02
 
 ### ✨ Added / Dodano
