@@ -8,6 +8,7 @@ import { PostList } from "../components/PostList";
 import { SearchBar } from "../components/SearchBar";
 import "../index.css";
 import { PageContainer } from "../layouts/PageContainer";
+import { ScrollToTopButton } from "../components/ui/ScrollToTopButton";
 
 import { TagFilter } from "../components/TagFilter";
 import { ToastNotifications } from "../components/ToastNotifications";
@@ -118,6 +119,7 @@ export function HomePage() {
           tagFilters={tagFilters}
           setTagFilters={setTagFilters}
         />
+        <ScrollToTopButton />
       </PageContainer>
 
       <ToastNotifications toast={toast} />

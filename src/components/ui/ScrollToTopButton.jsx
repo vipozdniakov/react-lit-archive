@@ -18,12 +18,16 @@ export function ScrollToTopButton() {
   };
 
   return visible ? (
-    <button
-      onClick={scrollToTop}
-      title="Наверх"
-      className="fixed bottom-6 right-6 z-40 p-3 rounded-full shadow-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 transition-all"
-    >
-      ↑
-    </button>
+    <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none">
+      <div className="w-full max-w-3xl px-4 flex justify-end pointer-events-auto">
+        <button
+          onClick={scrollToTop}
+          title="Наверх"
+          className="p-3 rounded-full shadow-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+        >
+          ↑
+        </button>
+      </div>
+    </div>
   ) : null;
 }

@@ -1,10 +1,10 @@
 // src/layouts/Layout.jsx
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { ScrollToTopButton } from "../components/ui/ScrollToTopButton";
+import { Header } from "../components/Header";
 import { ToastNotifications } from "../components/ToastNotifications";
+import { ScrollToTopButton } from "../components/ui/ScrollToTopButton";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 
 export function Layout({ toast }) {
@@ -18,7 +18,6 @@ export function Layout({ toast }) {
       </main>
       <ToastNotifications toast={toast} />
       <Footer />
-      <ScrollToTopButton />
     </div>
   );
 }
