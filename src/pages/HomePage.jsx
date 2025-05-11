@@ -7,18 +7,18 @@ import { NewPostForm } from "../components/NewPostForm";
 import { PostList } from "../components/PostList";
 import { SearchBar } from "../components/SearchBar";
 import "../index.css";
-import PageContainer from "../layouts/PageContainer";
+import { PageContainer } from "../layouts/PageContainer";
 
 import { TagFilter } from "../components/TagFilter";
-import ToastNotifications from "../components/ToastNotifications";
+import { ToastNotifications } from "../components/ToastNotifications";
 import { LanguageFilter } from "../components/LanguageFilter";
 import { usePosts } from "../hooks/usePosts";
 import { getAllTags } from "../utils/getAllTags";
-import AdminBadge from "../components/ui/AdminBadge";
+import { AdminBadge } from "../components/ui/AdminBadge";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 import { useFilteredPosts } from "../hooks/useFilteredPosts";
 
-function App() {
+export function HomePage() {
   // Global states
   const [user, setUser] = useState(null);
   const [query, setQuery] = useState("");
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <div className="font-lora bg-background min-h-screen">
-      <PageContainer>
+      <PageContainer size="md">
         <AdminBadge user={user} myUid={myUid} />
 
         {/* Search input */}
@@ -124,5 +124,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

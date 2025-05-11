@@ -1,17 +1,17 @@
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase-config";
 import { TagDisplay } from "../components/TagDisplay";
+import { db } from "../firebase-config";
 import { useTagStats } from "../hooks/useTagStats";
-import PageContainer from "../layouts/PageContainer";
+import { PageContainer } from "../layouts/PageContainer";
+import { PostContent } from "../layouts/PostContent";
 
-function PostPage() {
+export function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Get post by ID
   useEffect(() => {
     const loadPost = async () => {
       try {
@@ -30,7 +30,6 @@ function PostPage() {
     loadPost();
   }, [id]);
 
-  // Getting tag stats
   const { languagePostCounts, tagUsageByLanguage, getSortedTags } = useTagStats(
     post ? [post] : []
   );
@@ -41,9 +40,9 @@ function PostPage() {
   if (!post) return <p className="p-4">Пост не найден</p>;
 
   return (
-    <PageContainer>
+    <PageContainer size="md">
       <div
-        className="group bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition duration-300 max-w-3xl mx-auto"
+        className="bg-white shadow-md rounded-2xl p-6 border border-gray-200"
         lang={lang.toLowerCase()}
       >
         {/* Illustration */}
@@ -77,20 +76,21 @@ function PostPage() {
           </div>
         )}
 
-        {/* Header and language */}
-        <h1 className="text-3xl font-semibold mb-2">{post.title}</h1>
-        <p className="text-sm text-textSecondary mb-4">Язык: {lang}</p>
+        {/* Title and metadata */}
+        <h1
+          className={`text-3xl font-semibold mb-2 ${
+            post.type === "poetry" ? "text-center" : "text-left"
+          }`}
+        >
+          {post.title}
+        </h1>
 
         {/* Content */}
-
-        <div
-          className={`prose font-lora text-textMain ${
-            post.postType === "poetry"
-              ? "max-w-md whitespace-pre-line"
-              : "max-w-prose indent-paragraph whitespace-pre-wrap"
-          }`}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        {post.type === "poetry" ? (
+          <PostContent html={post.content} type="poetry" />
+        ) : (
+          <PostContent html={post.content} type="prose" />
+        )}
 
         {/* Tags */}
         <TagDisplay
@@ -104,5 +104,3 @@ function PostPage() {
     </PageContainer>
   );
 }
-
-export default PostPage;

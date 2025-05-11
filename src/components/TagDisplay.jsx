@@ -43,5 +43,9 @@ export function TagDisplay({
     });
   }, [tags, language, tagStats, onTagClick, activeTags]);
 
-  return <div className="flex flex-wrap gap-2 mt-6">{tagElements}</div>;
+  return (
+    <div className="flex flex-wrap gap-2 mt-6 justify-center">
+      {tagElements}
+    </div>
+  );
 }

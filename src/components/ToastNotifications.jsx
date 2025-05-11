@@ -3,7 +3,7 @@
 import React from "react";
 
 // Toast notification component
-export default function ToastNotifications({ toast }) {
+export function ToastNotifications({ toast }) {
   if (!toast.message) return null; // Don't render if no message
 
   const bgClass =

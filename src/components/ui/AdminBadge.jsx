@@ -1,7 +1,7 @@
 // src/components/ui/AdminBadge.jsx
 import React from "react";
 
-export default function AdminBadge({ user, myUid }) {
+export function AdminBadge({ user, myUid }) {
   if (user?.uid !== myUid) return null;
 
   return (

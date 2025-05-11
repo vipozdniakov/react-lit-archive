@@ -6,7 +6,7 @@ import LoginButton from "./LoginButton";
 import UserPanel from "./UserPanel";
 import { Link } from "react-router-dom";
 
-function AdminLogin() {
+export function AdminLogin() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -59,5 +59,3 @@ function AdminLogin() {
     </div>
   );
 }
-
-export default AdminLogin;

@@ -1,10 +1,10 @@
 // src/App.jsx
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./layouts/Layout";
-import HomePage from "./pages/HomePage";
-import PostPage from "./pages/PostPage";
-import AdminLogin from "./components/AdminLogin";
+import { Layout } from "./layouts/Layout";
+import { HomePage } from "./pages/HomePage";
+import { PostPage } from "./pages/PostPage";
+import { AdminLogin } from "./components/AdminLogin";
 
 function App() {
   const myUid = import.meta.env.VITE_MY_GOOGLE_UID;

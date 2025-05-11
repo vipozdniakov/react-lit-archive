@@ -1,13 +1,13 @@
 // src/layouts/Layout.jsx
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import ScrollToTopButton from "../components/ui/ScrollToTopButton";
-import ToastNotifications from "../components/ToastNotifications";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { ScrollToTopButton } from "../components/ui/ScrollToTopButton";
+import { ToastNotifications } from "../components/ToastNotifications";
 import { useScrollPosition } from "../hooks/useScrollPosition";
 
-export default function Layout({ toast }) {
+export function Layout({ toast }) {
   const isScrolled = useScrollPosition();
 
   return (

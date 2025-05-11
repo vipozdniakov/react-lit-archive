@@ -1,8 +1,8 @@
 // src/components/PostList.jsx
 import { deleteDoc, doc } from "firebase/firestore";
 import React, { useMemo, useRef, useState } from "react";
-import { db } from "../firebase-config";
 import { Link } from "react-router-dom";
+import { db } from "../firebase-config";
 import { useTagStats } from "../hooks/useTagStats";
 import { TagDisplay } from "./TagDisplay";
 
@@ -28,15 +28,6 @@ export function PostList({
   // Count posts and tag usage by language
   const { languagePostCounts, tagUsageByLanguage, getSortedTags } =
     useTagStats(posts);
-
-  // Filter posts based on search query and tag filters
-  const sortedTagsByPostId = useMemo(() => {
-    const map = {};
-    posts.forEach((post) => {
-      map[post.id] = getSortedTags(post.tags, post.language);
-    });
-    return map;
-  }, [posts, getSortedTags]);
 
   // Delete post handler with confirmation
   const handleDelete = async (postId) => {
@@ -87,16 +78,17 @@ export function PostList({
             className="group bg-white shadow-md rounded-2xl p-6 border border-gray-200 hover:shadow-lg transition duration-300"
             lang={mapLanguageCode(post.language)}
           >
-            {/* Image section */}
             {post.imageUrl && (
-              <div className="mb-4 overflow-hidden rounded-xl">
+              <div className="mb-4 overflow-hidden rounded-xl relative">
                 <img
                   src={post.imageUrl}
                   alt={post.title}
-                  className="w-full max-h-96 object-cover transition-transform duration-500 group-hover:scale-105 border-4 border-white"
+                  className="w-full max-h-96 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105 border-4 border-white"
                 />
+
+                {/* Image credit inside relative block */}
                 {(post.imageCredit || post.imageSource) && (
-                  <p className="text-xs text-textSecondary mt-2 text-center">
+                  <div className="absolute bottom-2 right-2 text-xs text-textSecondary bg-white/70 px-2 py-1 rounded-md backdrop-blur-sm">
                     {post.imageCredit && (
                       <span>Иллюстрация: {post.imageCredit}</span>
                     )}
@@ -113,20 +105,32 @@ export function PostList({
                         </a>
                       </>
                     )}
-                  </p>
+                  </div>
                 )}
               </div>
             )}
 
-            {/* Title and language */}
-            <h2 className="text-2xl font-semibold mb-2">
+            {/* Title and language badge */}
+            <h2
+              className={`text-2xl font-semibold mb-2 ${
+                post.type === "poetry" ? "text-center" : "text-left"
+              }`}
+            >
               <Link to={`/post/${post.id}`} className="hover:underline">
                 {post.title}
               </Link>
+              <span
+                className={`align-super text-[10px] font-medium ml-1 px-2 py-[1px] border rounded-sm bg-transparent ${
+                  post.language === "RU"
+                    ? "border-blue-400 text-blue-700"
+                    : post.language === "BY"
+                    ? "border-emerald-400 text-emerald-700"
+                    : "border-red-400 text-red-700"
+                }`}
+              >
+                {post.language}
+              </span>
             </h2>
-            <p className="text-sm text-textSecondary mb-4">
-              Язык: {post.language}
-            </p>
 
             {/* Content preview with expand/collapse */}
             <div
@@ -137,15 +141,16 @@ export function PostList({
               }`}
             >
               <pre
-                className={`prose font-lora text-textMain ${
-                  post.postType === "poetry"
-                    ? "max-w-md whitespace-pre-line"
-                    : "max-w-prose indent-paragraph whitespace-pre-wrap"
+                className={`font-lora text-textMain text-base leading-relaxed ${
+                  post.type === "poetry"
+                    ? "not-prose text-center whitespace-pre-line max-w-md mx-auto"
+                    : "prose indent-paragraph whitespace-pre-wrap max-w-prose"
                 }`}
               >
                 {content}
                 {!isExpanded && needsTruncate && "…"}
               </pre>
+
               {!isExpanded && needsTruncate && (
                 <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
               )}
@@ -170,19 +175,21 @@ export function PostList({
             )}
 
             {/* Tags */}
-            <TagDisplay
-              tags={post.sortedTags}
-              language={post.language}
-              tagStats={{ languagePostCounts, tagUsageByLanguage }}
-              onTagClick={(tag) => {
-                setTagFilters((prev) =>
-                  prev.includes(tag)
-                    ? prev.filter((t) => t !== tag)
-                    : [...prev, tag]
-                );
-              }}
-              activeTags={tagFilters}
-            />
+            <div className="mt-6">
+              <TagDisplay
+                tags={post.sortedTags}
+                language={post.language}
+                tagStats={{ languagePostCounts, tagUsageByLanguage }}
+                onTagClick={(tag) => {
+                  setTagFilters((prev) =>
+                    prev.includes(tag)
+                      ? prev.filter((t) => t !== tag)
+                      : [...prev, tag]
+                  );
+                }}
+                activeTags={tagFilters}
+              />
+            </div>
 
             {/* Admin controls */}
             {user?.uid === myUid && (

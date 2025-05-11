@@ -1,7 +1,7 @@
 // src/components/ui/ScrollToTopButton.jsx
 import React, { useEffect, useState } from "react";
 
-export default function ScrollToTopButton() {
+export function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
