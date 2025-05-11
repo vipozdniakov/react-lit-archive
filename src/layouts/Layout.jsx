@@ -15,6 +15,7 @@ export function Layout({ toast }) {
       <Header isScrolled={isScrolled} />
       <main className="pt-36 px-4">
         <Outlet /> {/* 👈 Here get HomePage and PostPage */}
+        <ScrollToTopButton />
       </main>
       <ToastNotifications toast={toast} />
       <Footer />

@@ -18,7 +18,7 @@ export function ScrollToTopButton() {
   };
 
   return visible ? (
-    <div className="fixed bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none">
+    <div className="fixed bottom-6 md:bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none">
       <div className="w-full max-w-3xl px-4 flex justify-end pointer-events-auto">
         <button
           onClick={scrollToTop}
