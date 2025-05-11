@@ -11,23 +11,38 @@ i zgodny z [Semantic Versioning](https://semver.org/lang/pl/).
 
 ---
 
-## [1.6.0](https://github.com/vipozdniakov/react-lit-archive/compare/v1.5.0...v1.6.0) (2025-05-11)
-
-
-### 📝 Docs / Dokumentacja
-
-* **changelog:** add entry for 1.5.0 release ([2de1398](https://github.com/vipozdniakov/react-lit-archive/commit/2de13988e6a5eecf6c2b004f9480dc97efbf1469))
-
+## [1.6.0] — 2025-05-11
 
 ### ✨ Added / Dodano
 
-* improve logo behavior — scroll to top if on homepage, else navigate to it ([fd62732](https://github.com/vipozdniakov/react-lit-archive/commit/fd62732b1a3cc1040660e71551891e419f63eeda))
-
+- New language badge next to post titles, styled by language color /
+  Nowy znacznik języka obok tytułów postów, stylizowany według koloru języka
+- Redesigned language filter with inline colored buttons /
+  Przeprojektowany filtr językowy z kolorowymi przyciskami w jednej linii
+- "Scroll to top" button now aligned with post layout, visible on all scrollable pages /
+  Przycisk „W górę” teraz dopasowany do układu postów i widoczny na wszystkich stronach
+- Poetry layout improved for readability: narrower width, centered lines /
+  Ulepszony układ poezji: węższy blok, wyśrodkowane linie
 
 ### 🎨 Refactored / Przebudowano
 
-* relocate and restyle scroll-to-top button for better UX ([dc37941](https://github.com/vipozdniakov/react-lit-archive/commit/dc379410cdb4d83030fdfd25553b9517f92af1f5))
-* switch to named exports + redesign language filter buttons ([74ce1b7](https://github.com/vipozdniakov/react-lit-archive/commit/74ce1b7753fa50148e054babd23e668a6c3ba46d))
+- Unified export style across components using named exports /
+  Ujednolicono styl eksportu komponentów – teraz wszystkie są eksportowane nazwane
+- Post layout cleaned up: removed redundant spacing, unified container sizes /
+  Uporządkowano układ postów: usunięto zbędne odstępy, ujednolicono kontenery
+- Post images now preserve border radius during hover zoom /
+  Obrazy w postach zachowują zaokrąglenia podczas powiększenia przy najechaniu
+- Language tag removed from post page (now indicated visually instead) /
+  Usunięto oznaczenie języka ze strony postu (zastąpiono wizualnym symbolem)
+
+### 🧼 Cleaned / Wyczyśćono
+
+- Removed duplicated `<Footer />` and header spacing issues /
+  Usunięto zduplikowany `<Footer />` i poprawiono odstępy w nagłówku
+- ScrollToTopButton relocated to avoid overlapping with footer /
+  Przycisk przewijania przeniesiony, by nie nachodził na stopkę
+
+---
 
 ## [1.5.0] — 2025-05-02
 
