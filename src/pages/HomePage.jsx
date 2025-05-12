@@ -15,7 +15,6 @@ import { LanguageFilter } from "../components/LanguageFilter";
 import { usePosts } from "../hooks/usePosts";
 import { getAllTags } from "../utils/getAllTags";
 import { AdminBadge } from "../components/ui/AdminBadge";
-import { useScrollPosition } from "../hooks/useScrollPosition";
 import { useFilteredPosts } from "../hooks/useFilteredPosts";
 
 export function HomePage() {
@@ -31,8 +30,12 @@ export function HomePage() {
 
   const [posts, setPosts] = usePosts(); // Fetch posts from Firestore on component mount
 
-  const { filteredEnhancedPosts, languagePostCounts, tagUsageByLanguage } =
-    useFilteredPosts(posts, query, languageFilter, tagFilters);
+  const { filteredEnhancedPosts } = useFilteredPosts(
+    posts,
+    query,
+    languageFilter,
+    tagFilters
+  );
 
   // Listen for authentication state changes
   useEffect(() => {
@@ -41,8 +44,6 @@ export function HomePage() {
     });
     return () => unsubscribe();
   }, []);
-
-  const isScrolled = useScrollPosition(); // Handle scroll event to adjust logo size
 
   // Show toast notification
   const showToast = (message, type = "success") => {

@@ -144,7 +144,7 @@ export function PostList({
                 className={`font-lora text-textMain text-base leading-relaxed ${
                   post.type === "poetry"
                     ? "not-prose text-center whitespace-pre-line max-w-md mx-auto"
-                    : "prose indent-paragraph whitespace-pre-wrap max-w-prose"
+                    : "prose max-w-none indent-paragraph whitespace-pre-wrap"
                 }`}
               >
                 {content}

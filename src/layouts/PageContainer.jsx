@@ -4,7 +4,7 @@ import React from "react";
 const sizeClasses = {
   sm: "max-w-xl",
   md: "max-w-3xl",
-  lg: "max-w-5xl",
+  lg: "max-w-4xl",
   full: "max-w-full",
 };
 

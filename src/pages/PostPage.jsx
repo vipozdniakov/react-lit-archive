@@ -40,7 +40,7 @@ export function PostPage() {
   if (!post) return <p className="p-4">Пост не найден</p>;
 
   return (
-    <PageContainer size="md">
+    <PageContainer size="lg">
       <div
         className="bg-white shadow-md rounded-2xl p-6 border border-gray-200"
         lang={lang.toLowerCase()}
