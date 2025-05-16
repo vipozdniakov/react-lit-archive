@@ -23,3 +23,6 @@
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
 }
+.scroll-area {
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}

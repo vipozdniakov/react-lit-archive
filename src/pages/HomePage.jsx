@@ -1,21 +1,18 @@
 // src/pages/HomePage.jsx
-import React, { useEffect, useState, useMemo } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import React, { useEffect, useMemo, useState } from "react";
 import { auth } from "../firebase-config";
-
+import { Sidebar } from "../components/Sidebar";
 import { NewPostForm } from "../components/NewPostForm";
 import { PostList } from "../components/PostList";
-import { SearchBar } from "../components/SearchBar";
 import "../index.css";
 import { PageContainer } from "../layouts/PageContainer";
 
-import { TagFilter } from "../components/TagFilter";
 import { ToastNotifications } from "../components/ToastNotifications";
-import { LanguageFilter } from "../components/LanguageFilter";
-import { usePosts } from "../hooks/usePosts";
-import { getAllTags } from "../utils/getAllTags";
 import { AdminBadge } from "../components/ui/AdminBadge";
 import { useFilteredPosts } from "../hooks/useFilteredPosts";
+import { usePosts } from "../hooks/usePosts";
+import { getAllTags } from "../utils/getAllTags";
 
 export function HomePage() {
   // Global states
@@ -82,43 +79,45 @@ export function HomePage() {
 
   return (
     <div className="font-lora bg-background min-h-screen">
-      <PageContainer size="md">
-        <AdminBadge user={user} myUid={myUid} />
+      <PageContainer size="full">
+        <div className="grid gap-8 lg:grid-cols-[3fr,1fr]">
+          {/* Main content */}
 
-        {/* Search input */}
-        <SearchBar query={query} onChange={setQuery} />
+          <div>
+            <AdminBadge user={user} myUid={myUid} />
 
-        {/* Language filter */}
-        <LanguageFilter value={languageFilter} onChange={setLanguageFilter} />
-
-        {/* Tag filter */}
-        <TagFilter
-          allTags={allTags}
-          tagFilters={tagFilters}
-          setTagFilters={setTagFilters}
-          languageFilter={languageFilter}
-        />
-
-        {/* New post form (admin only) */}
-        {user?.uid === myUid && (
-          <NewPostForm
-            onAddPost={handleAddPost}
-            editingPost={editingPost}
-            setEditingPost={setEditingPost}
-            onEditPost={handleEditPost}
-          />
-        )}
-
-        {/* List of posts */}
-        <PostList
-          posts={filteredEnhancedPosts}
-          user={user}
-          myUid={myUid}
-          onEdit={setEditingPost}
-          onDelete={handleDeletePost}
-          tagFilters={tagFilters}
-          setTagFilters={setTagFilters}
-        />
+            {user?.uid === myUid && (
+              <NewPostForm
+                onAddPost={handleAddPost}
+                editingPost={editingPost}
+                setEditingPost={setEditingPost}
+                onEditPost={handleEditPost}
+              />
+            )}
+            {/* List of posts */}
+            <PostList
+              posts={filteredEnhancedPosts}
+              user={user}
+              myUid={myUid}
+              onEdit={setEditingPost}
+              onDelete={handleDeletePost}
+              tagFilters={tagFilters}
+              setTagFilters={setTagFilters}
+            />
+          </div>
+          {/* Sidebar */}
+          <aside className="hidden lg:block">
+            <Sidebar
+              query={query}
+              setQuery={setQuery}
+              languageFilter={languageFilter}
+              setLanguageFilter={setLanguageFilter}
+              allTags={allTags}
+              tagFilters={tagFilters}
+              setTagFilters={setTagFilters}
+            />
+          </aside>
+        </div>
       </PageContainer>
 
       <ToastNotifications toast={toast} />

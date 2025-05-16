@@ -1,3 +1,5 @@
+// src/pages/PostPage.jsx
+
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,6 +14,7 @@ export function PostPage() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Fetch post data by ID from Firestore
   useEffect(() => {
     const loadPost = async () => {
       try {
@@ -30,11 +33,16 @@ export function PostPage() {
     loadPost();
   }, [id]);
 
+  // Get tag statistics (usage counts etc.)
   const { languagePostCounts, tagUsageByLanguage, getSortedTags } = useTagStats(
     post ? [post] : []
   );
+
+  // Define language and tag list (with safe fallback)
   const lang = post?.lang || "RU";
-  const sortedTags = post ? getSortedTags(post.tags, lang) : [];
+  const sortedTags = Array.isArray(post?.tags)
+    ? getSortedTags(post.tags, lang)
+    : [];
 
   if (loading) return <p className="p-4">Загрузка...</p>;
   if (!post) return <p className="p-4">Пост не найден</p>;
@@ -96,7 +104,10 @@ export function PostPage() {
         <TagDisplay
           tags={sortedTags}
           language={lang}
-          tagStats={{ languagePostCounts, tagUsageByLanguage }}
+          tagStats={{
+            languagePostCounts: languagePostCounts || {},
+            tagUsageByLanguage: tagUsageByLanguage || {},
+          }}
           onTagClick={() => {}}
           activeTags={[]}
         />
