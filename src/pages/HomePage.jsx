@@ -1,10 +1,12 @@
 // src/pages/HomePage.jsx
 import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useMemo, useState } from "react";
-import { auth } from "../firebase-config";
-import { Sidebar } from "../components/Sidebar";
 import { NewPostForm } from "../components/NewPostForm";
 import { PostList } from "../components/PostList";
+import { Sidebar } from "../components/Sidebar";
+import { SidebarTags } from "../components/SidebarTags";
+import { SidebarTop } from "../components/SidebarTop";
+import { auth } from "../firebase-config";
 import "../index.css";
 import { PageContainer } from "../layouts/PageContainer";
 
@@ -80,6 +82,15 @@ export function HomePage() {
   return (
     <div className="font-lora bg-background min-h-screen">
       <PageContainer size="full">
+        {/* Mobile-only top sidebar */}
+        <div className="block lg:hidden mb-6">
+          <SidebarTop
+            query={query}
+            setQuery={setQuery}
+            languageFilter={languageFilter}
+            setLanguageFilter={setLanguageFilter}
+          />
+        </div>
         <div className="grid gap-8 lg:grid-cols-[3fr,1fr]">
           {/* Main content */}
 
@@ -119,6 +130,19 @@ export function HomePage() {
           </aside>
         </div>
       </PageContainer>
+
+      {/* Mobile sidebar under post list */}
+      <div className="block lg:hidden mt-6">
+        <SidebarTags
+          query={query}
+          setQuery={setQuery}
+          languageFilter={languageFilter}
+          setLanguageFilter={setLanguageFilter}
+          allTags={allTags}
+          tagFilters={tagFilters}
+          setTagFilters={setTagFilters}
+        />
+      </div>
 
       <ToastNotifications toast={toast} />
     </div>
